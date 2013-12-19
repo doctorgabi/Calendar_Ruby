@@ -3,8 +3,8 @@ class Month
 
   def zeller(*values)
 
-    q = 3
-    m = 13
+    q = 1
+    m = 3
     y = 1904
     K = y % 100
     J = (y / 100).floor

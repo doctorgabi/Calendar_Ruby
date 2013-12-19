@@ -2,16 +2,20 @@
 class Month
 
   def zeller(*values)
+    m = 1
+    y = 1904
+
+    y -= 1 if m == 1 || 2
+    m += 12 if m = 1 || 2
 
     q = 1
-    m = 3
-    y = 1904
     K = y % 100
     J = (y / 100).floor
 
     a = (( 13 * (m + 1) ) / 5).floor
     b = ( K / 4 ).floor
     c = ( J / 4 ).floor
+
 
     zellers_day_value = ( q + a + K + b + c + (5 * J)) % 7
 

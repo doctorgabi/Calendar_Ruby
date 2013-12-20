@@ -4,7 +4,7 @@ require_relative "day"
 month = ARGV[0]
 year = ARGV[1]
 
-weekday = Day.new
-weekday.zeller(month, year) #to get the day of the week to start on.
+weekday = Day.new.zeller(month, year)
+# weekday.zeller(month, year) #to get the day of the week to start on.
 
 print "month #{month}, year #{year}, day #{weekday}"

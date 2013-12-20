@@ -7,11 +7,10 @@ class TestCalendar < Test::Unit::TestCase
   def test_month_day_year_output_properly
   #   ruby takes_arguments.rb 02 2012
   # end
-  shell_output = "ruby cal.rb 02 2012"
-      expected_output = <<EOS
-"month 2, year 2012, day Wednesday"
-EOS
-    assert_equal shell_output, expected_output
+  # shell_output = ruby cal.rb 02 2012
+    shell_output = `ruby lib/cal.rb 02 2012`
+    expected_output = "month 02, year 2012, day Wednesday"
+    assert_equal(expected_output, shell_output)
   end
 
   # def test_cal_integration

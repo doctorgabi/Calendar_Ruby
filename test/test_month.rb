@@ -13,13 +13,22 @@ class MonthTest < Test::Unit::TestCase
     assert_equal("Wednesday", day)
   end
 
-  def test_03_starts_on_Sat_01_2012
+  def test_03_starts_on_Sun_01_2012
+    month = Month.new
+    day = month.zeller(1, 2012)
+    assert_equal("Sunday", day)
   end
 
   def test_04_not_a_leap_year_02_1900
+    month = Month.new
+    day = month.zeller(2, 1900)
+    assert_equal("Thursday", day)
   end
 
   def test_05_leap_year_div_by_100_and_400
+    month = Month.new
+    day = month.zeller(2, 2000)
+    assert_equal("Tuesday", day)
   end
 
   def test_06_outside_of_scope_05_3005

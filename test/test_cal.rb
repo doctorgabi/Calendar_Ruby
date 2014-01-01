@@ -4,14 +4,21 @@ require "cal"
 # require_relative 'helper'
 
 class TestCalendar < MiniTest::Unit::TestCase
-
-  def test_month_day_year_output_properly
+#these tests can be refactored to just assert equal like in test 03 right now.
+  def test_01_month_day_year_output_properly
     shell_output = `ruby lib/cal.rb 02 2012`
     expected_output = "month 02, year 2012, day Wednesday"
     assert_equal(expected_output, shell_output)
   end
 
-  def test_cal_integration
+  def test_02_year_only_outputs_properly
+    shell_output = `ruby lib/cal.rb 2012`
+    expected_output = "month 02, year 2012, day Wednesday"
+    assert_equal(expected_output, shell_output)
+  end
+# Also, these first two are really only useful during construction
+# phase and will stop working as the cal executable file grows.
+  def test_03_cal_integration
     assert_equal("
    February 2012
 Su Mo Tu We Th Fr Sa

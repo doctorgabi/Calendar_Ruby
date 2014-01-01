@@ -14,14 +14,17 @@ class Day
         m += 12 if m == 1 || 2
 
         q = 1
-        k = y % 100
-        j = (y / 100).floor
-
-        a = (( 13 * (m + 1) ) / 5).floor
-        b = ( k / 4 ).floor
-        c = ( j / 4 ).floor
-
-        zellers_day_value = ( q + a + k + b + c + (5 * j)) % 7
+        # k = y % 100
+        # j = (y / 100).floor
+        # a = (( 13 * (m + 1) ) / 5).floor
+        # b = ( k / 4 ).floor
+        # c = ( j / 4 ).floor
+        # zellers_day_value = ( q + a + k + b + c + (5 * j)) % 7
+        a = (((m + 1)*26)/10).floor
+        b = (y/4).floor
+        c = ((y/100).floor)*6
+        d = (y/400).floor
+        zellers_day_value = ( q + a + y + b + c + d ) % 7
 
         if zellers_day_value == 0
           @weekday = "Saturday"

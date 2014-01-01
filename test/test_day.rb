@@ -1,7 +1,7 @@
-require 'test/unit'
+require "minitest/autorun"
 require 'day'
 
-class DayTest < Test::Unit::TestCase
+class DayTest < MiniTest::Unit::TestCase
 
   def test_01_day_has_a_zeller_method
     day = Day.new.zeller
@@ -27,13 +27,13 @@ class DayTest < Test::Unit::TestCase
 
   def test_05_leap_year_div_by_100_and_400
     day = Day.new
-    weekday = day.zeller(2, 2000)
+    weekday = day.zeller(02, 2000)
     assert_equal("Tuesday", weekday)
   end
 
   def test_06_outside_of_scope_05_3005
     day = Day.new
-    weekday = day.zeller(4, 3005)
+    weekday = day.zeller(04, 3005)
     assert_equal("Year outside of range 1800 - 3000", weekday)
   end
 
@@ -55,11 +55,11 @@ class DayTest < Test::Unit::TestCase
     assert_equal("Sunday", weekday)
   end
 
-  # def test_10_six_rows_month_04_2000
-  #   day = Day.new
-  #   weekday = day.zeller(4, 2000)
-  #   assert_equal("Saturday", weekday)
-  # end
+  def test_10_six_rows_month_04_2000
+    day = Day.new
+    weekday = day.zeller(4, 2000)
+    assert_equal("Saturday", weekday)
+  end
 
 
 end

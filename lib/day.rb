@@ -12,7 +12,6 @@ class Day
       else
         y -= 1 if m == 1 || 2
         m += 12 if m == 1 || 2
-
         q = 1
         zellers_day_value = (q + (((m+1)*26)/10) + y + (y/4) + (6*(y/100)) + (y/400)) % 7
 

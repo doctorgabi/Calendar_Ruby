@@ -23,10 +23,11 @@ elsif ARGV.length == 1
 
 elsif ARGV.length == 2
   #error 4 month more than 2 digits
-  if ARGV[0].length > 2
-    print "Please enter a one or two digit month"
+  if ARGV[0].to_i > 12
+    print "Please enter a valid month."
   else
     @month = ARGV[0]
+    #error 5 year not 4 digits
     if ARGV[1].length != 4
       print "Please enter a four digit year."
     else

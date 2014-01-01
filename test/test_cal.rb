@@ -13,6 +13,28 @@ class TestCalendar < MiniTest::Unit::TestCase
     assert_equal(`ruby lib/cal.rb 2012`, "year 2012, day Sunday")
   end
 
+  def test_03_year_only_not_with_four_digits_fails
+    assert_equal(`ruby lib/cal.rb 20123`, "Please enter a four digit year.")
+  end
+
+  def test_04_month_more_than_12_fails
+    assert_equal(`ruby lib/cal.rb 13 1999`, "Please enter a valid month.")
+  end
+
+  def test_05_more_than_two_arguments_fails
+    assert_equal(`ruby lib/cal.rb 04 2004 11`, "Please enter only a month and/or a year.")
+  end
+
+  def test_06_no_arguments_fails
+    assert_equal(`ruby lib/cal.rb`, "Please enter a month and/or a year.")
+  end
+
+  def test_07_month_and_year_but_year_not_four_digits_fails
+    assert_equal(`ruby lib/cal.rb 09 03`, "Please enter a four digit year.")
+  end
+
+
+
 # # Also, these first two are really only useful during construction
 # # phase and will stop working as the cal executable file grows.
 #   def test_03_cal_integration

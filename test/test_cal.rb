@@ -5,13 +5,13 @@ require "cal"
 
 class TestCalendar < MiniTest::Unit::TestCase
 
-  def test_01_month_day_year_output_properly
-    assert_equal(`ruby lib/cal.rb 02 2012`, "month 02, year 2012, day Wednesday")
-  end
+  # def test_01_month_day_year_output_properly
+  #   assert_equal(`ruby lib/cal.rb 02 2012`, "month 02, year 2012, day Wednesday")
+  # end
 
-  def test_02_year_only_outputs_properly
-    assert_equal(`ruby lib/cal.rb 2012`, "year 2012, day Sunday")
-  end
+  # def test_02_year_only_outputs_properly
+  #   assert_equal(`ruby lib/cal.rb 2012`, "year 2012, day Sunday")
+  # end
 
   def test_03_year_only_not_with_four_digits_fails
     assert_equal(`ruby lib/cal.rb 20123`, "Please enter a four digit year.")
@@ -33,6 +33,9 @@ class TestCalendar < MiniTest::Unit::TestCase
     assert_equal(`ruby lib/cal.rb 09 03`, "Please enter a four digit year.")
   end
 
+  def test_08_month_with_1st_on_Sunday_works
+    assert_equal(`cal 01 2012`, `ruby lib/cal.rb 01 2012`)
+  end
 
 
 # # Also, these first two are really only useful during construction

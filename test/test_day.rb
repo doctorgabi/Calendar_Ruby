@@ -54,6 +54,12 @@ class DayTest < MiniTest::Unit::TestCase
     assert_equal("Sunday", weekday)
   end
 
+  def test_10_known_fail_05_2009
+    day = Day.new
+    weekday = day.zeller(5, 2009)
+    assert_equal("Friday", weekday)
+  end
+
   # def test_10_six_rows_month_04_2000
   #   day = Day.new
   #   weekday = day.zeller(4, 2000)

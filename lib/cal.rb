@@ -147,8 +147,8 @@ end
 days = "Su Mo Tu We Th Fr Sa"
 
 if @month && @year
-  print @weekday
-  print @monthDays
+  # print @weekday
+  # print @monthDays
   @date = "#{@month} #{@year}"
   @date = @date.center(20)
   print "#{@date}\n#{days}\n"
@@ -174,7 +174,7 @@ if @month && @year
     end
 
   end
-# print @monthDays.to_s
+
 
 
 #------------------------------------------------------------
@@ -184,6 +184,21 @@ if @month && @year
 #    check for leapyear.
 #
 #------------------------------------------------------------
-#else
+else
+  year = "#{@year}"
+  year = year.center(64)
+  print "#{year}"
 
 end
+
+
+# -"                            1983
+# -      January               February               March
+# -Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
+# -                   1         1  2  3  4  5         1  2  3  4  5
+# - 2  3  4  5  6  7  8   6  7  8  9 10 11 12   6  7  8  9 10 11 12
+# - 9 10 11 12 13 14 15  13 14 15 16 17 18 19  13 14 15 16 17 18 19
+# -16 17 18 19 20 21 22  20 21 22 23 24 25 26  20 21 22 23 24 25 26
+# -23 24 25 26 27 28 29  27 28                 27 28 29 30 31
+# -30 31
+# -

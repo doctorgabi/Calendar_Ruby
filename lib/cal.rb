@@ -129,13 +129,13 @@ end
 
 #---------adds spaces before dates
 index.times do
-  @monthDays.unshift("  ")
+  @monthDays.unshift(" ")
 end
 
 #---------adds spaces after dates
 extraspaces = 42 - @monthDays.length
 extraspaces.times do
-  @monthDays.push("  ")
+  @monthDays.push(" ")
 end
 
 #------------------------------------------------------------
@@ -145,40 +145,36 @@ end
 #
 #------------------------------------------------------------
 days = "Su Mo Tu We Th Fr Sa"
-# singles = 1..9
+
 if @month && @year
+  # print @weekday
+  # print @monthDays
   @date = "#{@month} #{@year}"
   @date = @date.center(20)
-  print "#{@date}
-#{days}\n"
-6.times do
+  print "#{@date}\n#{days}\n"
+
   6.times do
-    if @monthDays[0].to_i < 10
-      print " #{@monthDays[0]} "
-    else
-      print "#{@monthDays[0]} "
+
+    6.times do
+      if @monthDays[0].to_i < 10
+        print " #{@monthDays[0]} "
+      else
+        print "#{@monthDays[0]} "
+      end
+      @monthDays.shift
     end
-    @monthDays.shift
-  end
-  1.times do
-    if @monthDays[0].to_i < 10
-      print " #{@monthDays[0]}\n"
-    else
-      print "#{@monthDays[0]}\n"
+
+    1.times do
+      if @monthDays[0].to_i < 10
+        print " #{@monthDays[0]}\n"
+      else
+        print "#{@monthDays[0]}\n"
+      end
+      @monthDays.shift
     end
-    @monthDays.shift
+
   end
-end
 # print @monthDays.to_s
-
-
-
-
-
-
-
-
-
 
 
 #------------------------------------------------------------

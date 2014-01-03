@@ -37,9 +37,8 @@ class TestCalendar < MiniTest::Unit::TestCase
     assert_equal(`cal 01 2012`, `ruby lib/cal.rb 01 2012`)
   end
 
-
-# # Also, these first two are really only useful during construction
-# # phase and will stop working as the cal executable file grows.
+ ## these are really only useful during construction
+ ## phase and will stop working as the cal executable file grows.
 #   def test_03_cal_integration
 #     assert_equal("
 #    February 2012

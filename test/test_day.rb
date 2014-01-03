@@ -8,9 +8,8 @@ class DayTest < MiniTest::Unit::TestCase
   end
 
   def test_02_leap_year_02_2012
-    day = Day.new
-    weekday = day.zeller(2, 2012)
-    assert_equal("Wednesday", weekday)
+    day = Day.new.zeller(2, 2012)
+    assert_equal("Wednesday", day)
   end
 
   def test_03_starts_on_Sun_01_2012

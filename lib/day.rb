@@ -1,4 +1,5 @@
-
+#pass in a month and a year and get the return the
+#day of the week that the first of that month is on.
 class Day
 
   def zeller(*values)

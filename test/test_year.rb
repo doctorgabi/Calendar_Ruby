@@ -27,4 +27,8 @@ class YearTest < MiniTest::Unit::TestCase
     assert_equal(true, leapyear)
   end
 
+  def test_06_no_year_returns_error_message
+    leapyear = Year.new.leap
+    assert_equal("Please enter a year in four digits", leapyear)
+  end
 end

@@ -1,7 +1,8 @@
-
+#pass in a year and return true or false for leapyear.
 class Year
 
   def leap(*year)
+
     if year
       a = year[0].to_i % 400
       b = year[0].to_i % 100

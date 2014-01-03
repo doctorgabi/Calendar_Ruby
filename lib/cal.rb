@@ -187,7 +187,7 @@ if @month && @year
 else
   year = "#{@year}"
   year = year.center(64)
-  print "#{year}"
+  print year
 
 end
 

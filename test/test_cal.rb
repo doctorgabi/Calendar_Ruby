@@ -33,12 +33,11 @@ class TestCalendar < MiniTest::Unit::TestCase
     assert_equal(`ruby lib/cal.rb 09 03`, "Please enter a four digit year.")
   end
 
-  # def test_08_month_with_1st_on_Sunday_works
-  #   assert_equal(`cal 01 2012`, `ruby lib/cal.rb 01 2012`)
-  # end
+  def test_08_month_with_1st_on_Sunday_works
+    assert_equal(`cal 01 2012`, `ruby lib/cal.rb 01 2012`)
+  end
 
- ## these are really only useful during construction
- ## phase and will stop working as the cal executable file grows.
+
 #   def test_03_cal_integration
 #     assert_equal("
 #    February 2012
@@ -47,7 +46,7 @@ class TestCalendar < MiniTest::Unit::TestCase
 #  5  6  7  8  9 10 11
 # 12 13 14 15 16 17 18
 # 19 20 21 22 23 24 25
-# 26 27 28 29         ",`ruby lib/cal.rb 2 2012`)
+# 26 27 28 29         ", `ruby lib/cal.rb 2 2012`)
 #   end
 
 end

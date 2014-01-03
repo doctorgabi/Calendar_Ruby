@@ -60,5 +60,4 @@ class DayTest < MiniTest::Unit::TestCase
   #   assert_equal("Saturday", weekday)
   # end
 
-
 end

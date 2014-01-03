@@ -7,27 +7,24 @@ class YearTest < MiniTest::Unit::TestCase
     year = Year.new.leap
   end
 
-  # def test_01_leap_year_2000
-  #   year = Year.new.leap
-  #   weekday = day.zeller(2, 2012)
-  #   assert_equal("Wednesday", weekday)
-  # end
-
   def test_02_leap_year_2000
     leapyear = Year.new.leap(1900)
     assert_equal(false, leapyear)
   end
 
-  # def test_01_2000_is_leap
-  #   assert_equal("true", `ruby lib/year.rb 01 2000`)
-  # end
+  def test_03_2000_is_leap
+    leapyear = Year.new.leap(2000)
+    assert_equal(true, leapyear)
+  end
 
-  # def test_02_1900_not_leap
-  #   assert_equal("false", `ruby lib/year.rb 01 1900`)
-  # end
+  def test_04_1999_not_leap
+    leapyear = Year.new.leap(1999)
+    assert_equal(false, leapyear)
+  end
 
-  # def test_03_1904_is_leap
-  #   assert_equal("true", `ruby lib/year.rb 1904`)
-  # end
+  def test_05_1904_is_leap
+    leapyear = Year.new.leap(1904)
+    assert_equal(true, leapyear)
+  end
 
 end

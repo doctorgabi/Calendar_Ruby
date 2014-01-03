@@ -60,6 +60,7 @@ class TestCalendar < MiniTest::Unit::TestCase
   def test_14_month_with_1st_on_Saturday_works
     assert_equal(`cal 12 2007`, `ruby lib/cal.rb 12 2007`)
   end
+
 #   def test_03_cal_integration
 #     assert_equal("
 #    February 2012

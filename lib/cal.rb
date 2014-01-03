@@ -147,8 +147,8 @@ end
 days = "Su Mo Tu We Th Fr Sa"
 
 if @month && @year
-  # print @weekday
-  # print @monthDays
+  print @weekday
+  print @monthDays
   @date = "#{@month} #{@year}"
   @date = @date.center(20)
   print "#{@date}\n#{days}\n"

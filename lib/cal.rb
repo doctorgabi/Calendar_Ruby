@@ -52,14 +52,16 @@ end
 leapyear = Year.new.leap(@year)                    #returns true or false
 days = "Su Mo Tu We Th Fr Sa"
 year = "#{@year}"
-year = year.center(64)
+year = year.center(60)
 
+monthNamesToPrint = []
 jan = "January"
 jan = jan.center(20)
 feb = "February"
 feb = feb.center(20)
 mar = "March"
 mar = mar.center(20)
+monthNamesToPrint.push("#{jan}  #{feb}  #{mar}")
 
 apr = "April"
 apr = apr.center(20)
@@ -67,6 +69,7 @@ may = "May"
 may = may.center(20)
 jun = "June"
 jun = jun.center(20)
+monthNamesToPrint.push("#{apr}  #{may}  #{jun}")
 
 jul = "July"
 jul = jul.center(20)
@@ -74,6 +77,7 @@ aug = "August"
 aug = aug.center(20)
 sep = "September"
 sep = sep.center(20)
+monthNamesToPrint.push("#{jul}  #{aug}  #{sep}")
 
 oct = "October"
 oct = oct.center(20)
@@ -81,6 +85,8 @@ nov = "November"
 nov = nov.center(20)
 dec = "December"
 dec = dec.center(20)
+monthNamesToPrint.push("#{oct}  #{nov}  #{dec}")
+
 #------------------------------------------------------------
 #
 #    If we have both month and year print only one month
@@ -147,19 +153,20 @@ else
     @arrayOfMonthArrays.push(@monthDays)              #12 arrays stored and named
     counter += 1                                      #counter incremented
   end
-  puts "Gabrielle's version****************************************************"
-  puts year
-  print "#{jan}  #{feb}  #{mar}\n"
 
-  4.times do
+  puts year
+
+  monthRowsCounter = 0
+  4.times do                                          #because there are 4 sets of 3 months
+    print "#{monthNamesToPrint[monthRowsCounter]}\n"
     print "#{days}  #{days}  #{days}\n"
-    6.times do
+    6.times do                                        #there are up to 6 rows/weeks per month
       i = 0
       arrayToPrint = @arrayOfMonthArrays[i]
       counter = 1
-      3.times do
-        7.times do
-          if arrayToPrint[0].to_i < 10
+      3.times do                                      #there are 3 months printed per row
+        7.times do                                    #there are 7 days in a week
+          if arrayToPrint[0].to_i < 10                #spaces needed when single digits, not when double
             print " #{arrayToPrint[0]} "
           else
             print "#{arrayToPrint[0]} "
@@ -167,23 +174,16 @@ else
           arrayToPrint.shift
           counter += 1
         end
-        print " " if counter == 8 || counter == 15
-        print "\n" if counter == 22
+        print " " if counter == 8 || counter == 15    #spaces between months
+        print "\n" if counter == 22                   #newline after 3 months' days are printed on a row
         i += 1
         arrayToPrint = @arrayOfMonthArrays[i]
       end
     end
     3.times do
-      @arrayOfMonthArrays.shift
+      @arrayOfMonthArrays.shift                       #delets the first 3 months once they've been output.
     end
+    monthRowsCounter += 1
   end
 
-
-
 end
-  # puts "------------------@month ----------#{@month}"
-  # puts "------------------@year -----------#{@year}"
-  # puts "------------------@monthRange ------------#{@monthRange}"
-  # puts "------------------leapyear -------------#{leapyear}"
-  # puts "------------------@weekday --------------#{@weekday}"
-  # puts "-------------------index-------------------#{index}"

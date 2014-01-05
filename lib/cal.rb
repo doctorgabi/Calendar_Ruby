@@ -123,73 +123,63 @@ if @month && @year
   end
 #------------------------------------------------------------
 #
-#    If we have only year print whole year, starting with
-#    @weekday which is already set to Jan first.
+#    If we have only year print whole year
 #
 #------------------------------------------------------------
 else
 
-  index = Month.new.index(@weekday)
-
-  #NB @weekday is already set to Jan 1st when only year was provided
+  index = Month.new.index(@weekday)                   #NB @weekday is already set to Jan 1st when only year was provided
 
 #-------------------------------
 #    first generate 12 arrays:
 #-------------------------------
 
   counter = 1
+  @arrayOfMonthArrays = []
   12.times do
-    @month = counter.to_s                             #we have string month
-    @monthRange = Month.new.range(@month, leapyear)   #we have a range
-    @monthDays = *@monthRange                         #we have an array of the range
-    index = Month.new.index(@weekday)                 #we have the index for unshifting spaces
-    monthArray = Month.new.monthArray(index, @monthDays)   #we have the array with spaces and the nextfirstday
-    @monthDays = monthArray[0]                        #we have the month array
-    @weekday = monthArray[1]                          #we have reset @weekday ready for the next month
+    @month = counter.to_s                             #string of month number generated
+    @monthRange = Month.new.range(@month, leapyear)   #range created
+    @monthDays = *@monthRange                         #array of the range created
+    index = Month.new.index(@weekday)                 #index for unshifting spaces generated
+    monthArray = Month.new.monthArray(index, @monthDays)   #array with spaces and the nextfirstday generated
+    @monthDays = monthArray[0]                        #month array aquired
+    @weekday = monthArray[1]                          #@weekday reset ready for the next month
+    @arrayOfMonthArrays.push(@monthDays)              #12 arrays stored and named
+    counter += 1                                      #counter incremented
+  end
+  puts "Gabrielle's version****************************************************"
+  puts year
+  print "#{jan}  #{feb}  #{mar}\n"
 
-    JanArray = @monthDays if counter == 1
-    FebArray = @monthDays if counter == 2
-    MarArray = @monthDays if counter == 3
-    AprArray = @monthDays if counter == 4
-    MayArray = @monthDays if counter == 5
-    JunArray = @monthDays if counter == 6
-    JulArray = @monthDays if counter == 7
-    AugArray = @monthDays if counter == 8
-    SepArray = @monthDays if counter == 9
-    OctArray = @monthDays if counter == 10
-    NovArray = @monthDays if counter == 11
-    DecArray = @monthDays if counter == 12            #we have stored and named each array
-    counter += 1                                      #we have incremented the counter
+  4.times do
+    print "#{days}  #{days}  #{days}\n"
+    6.times do
+      i = 0
+      arrayToPrint = @arrayOfMonthArrays[i]
+      counter = 1
+      3.times do
+        7.times do
+          if arrayToPrint[0].to_i < 10
+            print " #{arrayToPrint[0]} "
+          else
+            print "#{arrayToPrint[0]} "
+          end
+          arrayToPrint.shift
+          counter += 1
+        end
+        print " " if counter == 8 || counter == 15
+        print "\n" if counter == 22
+        i += 1
+        arrayToPrint = @arrayOfMonthArrays[i]
+      end
+    end
+    3.times do
+      @arrayOfMonthArrays.shift
+    end
   end
 
-  print "#{JanArray}\n"
-  print "#{FebArray}\n"
-  print "#{MarArray}\n"
-  print "#{AprArray}\n"
-  print "#{MayArray}\n"
-  print "#{JunArray}\n"
-  print "#{JulArray}\n"
-  print "#{AugArray}\n"
-  print "#{SepArray}\n"
-  print "#{OctArray}\n"
-  print "#{NovArray}\n"
-  print "#{DecArray}\n"
-
-  # @month = Month.new.stringMonth(@month)
 
 
-  # puts year
-  # print "#{jan}  #{feb}  #{mar}\n"
-  # print "#{days}  #{days}  #{days}\n"
-
-  # print "#{apr}  #{may}  #{jun}\n"
-  # print "#{days}  #{days}  #{days}\n"
-
-  # print "#{jul}  #{aug}  #{sep}\n"
-  # print "#{days}  #{days}  #{days}\n"
-
-  # print "#{oct}  #{nov}  #{dec}\n"
-  # print "#{days}  #{days}  #{days}\n"
 end
   # puts "------------------@month ----------#{@month}"
   # puts "------------------@year -----------#{@year}"

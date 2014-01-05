@@ -60,4 +60,29 @@ class MonthTest < MiniTest::Unit::TestCase
     index = Month.new.index("Friday")
     assert_equal(5, index)
   end
+
+  def test_11_month_has_a_stringMonth_method
+    stringMonth = Month.new.stringMonth("1")
+  end
+
+  def test_12_month_1_returns_January
+    stringMonth = Month.new.stringMonth("1")
+    assert_equal("January", stringMonth)
+  end
+
+  def test_13_month_09_returns_September
+    stringMonth = Month.new.stringMonth("09")
+    assert_equal("September", stringMonth)
+  end
+
+  def test_14_month_has_a_monthArray_method
+    @monthDays = *1..31
+    monthArray = Month.new.monthArray(0, @monthDays)
+  end
+
+  def test_15_monthArray_method_returns_array_with_correct_spaces_pushed_and_next_months_first_weekday_as_string
+    @monthDays = *1..31
+    monthArray = Month.new.monthArray(0, @monthDays)
+    assert_equal([[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "], "Wednesday"], monthArray)
+  end
 end

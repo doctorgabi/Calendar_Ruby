@@ -11,118 +11,42 @@ require_relative "month"
 #
 #--------------------------------------------------------------
 
-if ARGV.length > 2  #error 1 too many arguments
+if ARGV.length > 2                                 #error 1 too many arguments
   print "Please enter only a month and/or a year."
 
-elsif ARGV[0] == nil  #error 2 no arguments
+elsif ARGV[0] == nil                               #error 2 no arguments
   print "Please enter a month and/or a year."
 
 elsif ARGV.length == 1
 
-  if ARGV[0].length != 4  #error 3 year not 4 digits
+  if ARGV[0].length != 4                           #error 3 year not 4 digits
     print "Please enter a four digit year."
   else
     @year = ARGV[0]
     @weekday = Day.new.zeller(1, @year)
-    #************************************************************************************
-    # @output = "year #{@year}, day #{@weekday}"#******************************************This line is for year only - need to print the whole calendar.
-    #************************************************************************************
-  end
+     end
 
 elsif ARGV.length == 2
 
-  if ARGV[0].to_i > 12  #error 4 month more than 2 digits
+  if ARGV[0].to_i > 12                            #error 4 month more than 2 digits
     print "Please enter a valid month."
   else
     @month = ARGV[0]
 
-    if ARGV[1].length != 4  #error 5 year not 4 digits
+    if ARGV[1].length != 4                        #error 5 year not 4 digits
       print "Please enter a four digit year."
     else
       @year = ARGV[1]
       @weekday = Day.new.zeller(@month, @year)
-      #************************************************************************************
-      # @output = "month #{@month}, year #{@year}, day #{@weekday}"#*************************This line is for month and year - need to print only the month.
-      #************************************************************************************
     end
   end
 
 end
 
 
-#------------------------------------------------------------
-#
-#          Next convert the @month value to string
-#          and add the right number of days per month
-#          by checking if it's a leapyear.
-#
-#------------------------------------------------------------
-leapyear = Year.new.leap(@year)
-@monthRange = Month.new.range(@month, leapyear)
-
-#------------------------------------------------------------
-#
-#    Makes an array of length 42 with spaces before depending
-#    on @weekday and spaces after so that all months fill 6
-#    rows of 7 spaces (=42) for printing.
-#
-#------------------------------------------------------------
-
-@monthDays = *@monthRange
-index = Month.new.index(@weekday)
-
-
-#---------adds spaces before dates
-index.times do
-  @monthDays.unshift(" ")
-end
-
-#---------adds spaces after dates
-extraspaces = 42 - @monthDays.length
-extraspaces.times do
-  @monthDays.push(" ")
-end
-
-
-
-
-puts "------------------@month ----------#{@month}"
-puts "------------------@year -----------#{@year}"
-puts "------------------@monthRange ------------#{@monthRange}"
-puts "------------------leapyear -------------#{leapyear}"
-puts "------------------@weekday --------------#{@weekday}"
-puts "-------------------index-------------------#{index}"
-#----------------------------------------------------------
-#           variables used in printing calendar:
-#----------------------------------------------------------
+leapyear = Year.new.leap(@year)                    #returns true or false
 days = "Su Mo Tu We Th Fr Sa"
-year = "#{@year}"
-year = year.center(64)
-puts year
-jan = "January"
-jan = jan.center(20)
-feb = "February"
-feb = feb.center(20)
-mar = "March"
-mar = mar.center(20)
-apr = "April"
-apr = apr.center(20)
-may = "May"
-may = may.center(20)
-jun = "June"
-jun = jun.center(20)
-jul = "July"
-jul = jul.center(20)
-aug = "August"
-aug = aug.center(20)
-sep = "September"
-sep = sep.center(20)
-oct = "October"
-oct = oct.center(20)
-nov = "November"
-nov = nov.center(20)
-dec = "December"
-dec = dec.center(20)
+
 
 #------------------------------------------------------------
 #
@@ -132,8 +56,22 @@ dec = dec.center(20)
 #------------------------------------------------------------
 
 if @month && @year
-  # print @weekday
-  # print @monthDays
+
+  @monthRange = Month.new.range(@month, leapyear)  #returns range of days for any month
+  @monthDays = *@monthRange                        #expands range to an array
+  index = Month.new.index(@weekday)                #returns 0-6 for unshifting spaces to the array
+
+  index.times do
+    @monthDays.unshift(" ")
+  end
+
+  extraspaces = 42 - @monthDays.length
+  extraspaces.times do
+    @monthDays.push(" ")
+  end
+
+  @month = Month.new.stringMonth(@month)          #returns the string version of the numeric month
+
   @date = "#{@month} #{@year}"
   @date = @date.center(20)
   print "#{@date}\n#{days}\n"
@@ -159,8 +97,6 @@ if @month && @year
     end
 
   end
-
-
 #------------------------------------------------------------
 #
 #    If we have only year print whole year, starting with
@@ -169,6 +105,38 @@ if @month && @year
 #
 #------------------------------------------------------------
 else
+  #NB @weekday is already set to Jan 1st when only year was provided
+  year = "#{@year}"
+  year = year.center(64)
+  puts year
+  jan = "January"
+  jan = jan.center(20)
+  feb = "February"
+  feb = feb.center(20)
+  mar = "March"
+  mar = mar.center(20)
+
+  apr = "April"
+  apr = apr.center(20)
+  may = "May"
+  may = may.center(20)
+  jun = "June"
+  jun = jun.center(20)
+
+  jul = "July"
+  jul = jul.center(20)
+  aug = "August"
+  aug = aug.center(20)
+  sep = "September"
+  sep = sep.center(20)
+
+  oct = "October"
+  oct = oct.center(20)
+  nov = "November"
+  nov = nov.center(20)
+  dec = "December"
+  dec = dec.center(20)
+
   print "#{jan}  #{feb}  #{mar}\n"
   print "#{days}  #{days}  #{days}\n"
 
@@ -183,13 +151,11 @@ else
 end
 
 
-# -"                            1983
-# -      January               February               March
-# -Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
-# -                   1         1  2  3  4  5         1  2  3  4  5
-# - 2  3  4  5  6  7  8   6  7  8  9 10 11 12   6  7  8  9 10 11 12
-# - 9 10 11 12 13 14 15  13 14 15 16 17 18 19  13 14 15 16 17 18 19
-# -16 17 18 19 20 21 22  20 21 22 23 24 25 26  20 21 22 23 24 25 26
-# -23 24 25 26 27 28 29  27 28                 27 28 29 30 31
-# -30 31
-# -
+
+
+# puts "------------------@month ----------#{@month}"
+# puts "------------------@year -----------#{@year}"
+# puts "------------------@monthRange ------------#{@monthRange}"
+# puts "------------------leapyear -------------#{leapyear}"
+# puts "------------------@weekday --------------#{@weekday}"
+# puts "-------------------index-------------------#{index}"

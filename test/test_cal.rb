@@ -57,13 +57,13 @@ class TestCalendar < MiniTest::Unit::TestCase
   #   assert_equal(`cal 5 2009`, `ruby lib/cal.rb 5 2009`)
   # end
 
-  def test_14_month_with_1st_on_Saturday_works
-    assert_equal(`cal 12 2007`, `ruby lib/cal.rb 12 2007`)
-  end
-
-  # def test_15_year_only_non_leap
-  #   assert_equal(`cal 1983`, `ruby lib/cal.rb 1983`)
+  # def test_14_month_with_1st_on_Saturday_works
+  #   assert_equal(`cal 12 2007`, `ruby lib/cal.rb 12 2007`)
   # end
+
+  def test_15_year_only_non_leap
+    assert_equal(`cal 1983`, `ruby lib/cal.rb 1983`)
+  end
 #   def test_03_cal_integration
 #     assert_equal("
 #    February 2012

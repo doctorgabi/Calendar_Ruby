@@ -1,6 +1,6 @@
 class Month
 
-  def range(*data)
+  def range(*data) #converts a month number and leapyear info to a range of number of days in a given month
     @month = data[0]
     leapyear = data[1]
 
@@ -36,7 +36,7 @@ class Month
     @monthRange
   end
 
-  def stringMonth(month)
+  def stringMonth(month) #converts a number to a month string
     @month = month
 
     if @month == "1" || @month == "01"
@@ -67,7 +67,7 @@ class Month
     @month
   end
 
-  def index(weekday)
+  def index(weekday) #converts a weekday string to a number
     input = weekday
     index = 0
     if input == "Sunday"
@@ -88,7 +88,7 @@ class Month
     index
   end
 
-  def monthArray(*data)
+  def monthArray(*data) #converts the index and array of month days to same with spaces added either side for printing, plus returns the day of the week the following month starts on.
     index = data[0]
     @monthDays = data[1]
 
@@ -120,6 +120,6 @@ class Month
 
     output = [@monthDays, nextFirstDay]
     output
-
   end
+
 end

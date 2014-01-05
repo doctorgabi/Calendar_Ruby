@@ -43,15 +43,47 @@ elsif ARGV.length == 2
 
 end
 
+#------------------------------------------------------------
+#
+#    Miscellaneous data for printing:
+#
+#------------------------------------------------------------
 
 leapyear = Year.new.leap(@year)                    #returns true or false
 days = "Su Mo Tu We Th Fr Sa"
+year = "#{@year}"
+year = year.center(64)
 
+jan = "January"
+jan = jan.center(20)
+feb = "February"
+feb = feb.center(20)
+mar = "March"
+mar = mar.center(20)
 
+apr = "April"
+apr = apr.center(20)
+may = "May"
+may = may.center(20)
+jun = "June"
+jun = jun.center(20)
+
+jul = "July"
+jul = jul.center(20)
+aug = "August"
+aug = aug.center(20)
+sep = "September"
+sep = sep.center(20)
+
+oct = "October"
+oct = oct.center(20)
+nov = "November"
+nov = nov.center(20)
+dec = "December"
+dec = dec.center(20)
 #------------------------------------------------------------
 #
 #    If we have both month and year print only one month
-#    from our array of length 42 into 6 rows of 7:
 #
 #------------------------------------------------------------
 
@@ -60,34 +92,26 @@ if @month && @year
   @monthRange = Month.new.range(@month, leapyear)  #returns range of days for any month
   @monthDays = *@monthRange                        #expands range to an array
   index = Month.new.index(@weekday)                #returns 0-6 for unshifting spaces to the array
-
-  index.times do
-    @monthDays.unshift(" ")
-  end
-
-  extraspaces = 42 - @monthDays.length
-  extraspaces.times do
-    @monthDays.push(" ")
-  end
-
+  monthArray = Month.new.monthArray(index, @monthDays)   #returns array of month numbers with spaces before and after for printing
+  @monthDays = monthArray[0]
   @month = Month.new.stringMonth(@month)          #returns the string version of the numeric month
 
   @date = "#{@month} #{@year}"
   @date = @date.center(20)
   print "#{@date}\n#{days}\n"
 
-  6.times do
-
-    6.times do
+  6.times do                                      #for 6 rows/weeks
+                                                  #(print the first value in the array then delete it)
+    6.times do                                    #for the first 6 days of a week
       if @monthDays[0].to_i < 10
-        print " #{@monthDays[0]} "
+        print " #{@monthDays[0]} "                #if <10 prints with a space either side
       else
-        print "#{@monthDays[0]} "
+        print "#{@monthDays[0]} "                 #else prints only with a space to the right
       end
       @monthDays.shift
     end
 
-    1.times do
+    1.times do                                    #for the last day of the week need a newline
       if @monthDays[0].to_i < 10
         print " #{@monthDays[0]}\n"
       else
@@ -100,62 +124,76 @@ if @month && @year
 #------------------------------------------------------------
 #
 #    If we have only year print whole year, starting with
-#    @weekday which is already set to Jan first. Need to
-#    check for leapyear.
+#    @weekday which is already set to Jan first.
 #
 #------------------------------------------------------------
 else
+
+  index = Month.new.index(@weekday)
+
   #NB @weekday is already set to Jan 1st when only year was provided
-  year = "#{@year}"
-  year = year.center(64)
-  puts year
-  jan = "January"
-  jan = jan.center(20)
-  feb = "February"
-  feb = feb.center(20)
-  mar = "March"
-  mar = mar.center(20)
 
-  apr = "April"
-  apr = apr.center(20)
-  may = "May"
-  may = may.center(20)
-  jun = "June"
-  jun = jun.center(20)
+#-------------------------------
+#    first generate 12 arrays:
+#-------------------------------
 
-  jul = "July"
-  jul = jul.center(20)
-  aug = "August"
-  aug = aug.center(20)
-  sep = "September"
-  sep = sep.center(20)
+  counter = 1
+  12.times do
+    @month = counter.to_s                             #we have string month
+    @monthRange = Month.new.range(@month, leapyear)   #we have a range
+    @monthDays = *@monthRange                         #we have an array of the range
+    index = Month.new.index(@weekday)                 #we have the index for unshifting spaces
+    monthArray = Month.new.monthArray(index, @monthDays)   #we have the array with spaces and the nextfirstday
+    @monthDays = monthArray[0]                        #we have the month array
+    @weekday = monthArray[1]                          #we have reset @weekday ready for the next month
 
-  oct = "October"
-  oct = oct.center(20)
-  nov = "November"
-  nov = nov.center(20)
-  dec = "December"
-  dec = dec.center(20)
+    JanArray = @monthDays if counter == 1
+    FebArray = @monthDays if counter == 2
+    MarArray = @monthDays if counter == 3
+    AprArray = @monthDays if counter == 4
+    MayArray = @monthDays if counter == 5
+    JunArray = @monthDays if counter == 6
+    JulArray = @monthDays if counter == 7
+    AugArray = @monthDays if counter == 8
+    SepArray = @monthDays if counter == 9
+    OctArray = @monthDays if counter == 10
+    NovArray = @monthDays if counter == 11
+    DecArray = @monthDays if counter == 12            #we have stored and named each array
+    counter += 1                                      #we have incremented the counter
+  end
 
-  print "#{jan}  #{feb}  #{mar}\n"
-  print "#{days}  #{days}  #{days}\n"
+  print "#{JanArray}\n"
+  print "#{FebArray}\n"
+  print "#{MarArray}\n"
+  print "#{AprArray}\n"
+  print "#{MayArray}\n"
+  print "#{JunArray}\n"
+  print "#{JulArray}\n"
+  print "#{AugArray}\n"
+  print "#{SepArray}\n"
+  print "#{OctArray}\n"
+  print "#{NovArray}\n"
+  print "#{DecArray}\n"
 
-  print "#{apr}  #{may}  #{jun}\n"
-  print "#{days}  #{days}  #{days}\n"
+  # @month = Month.new.stringMonth(@month)
 
-  print "#{jul}  #{aug}  #{sep}\n"
-  print "#{days}  #{days}  #{days}\n"
 
-  print "#{oct}  #{nov}  #{dec}\n"
-  print "#{days}  #{days}  #{days}\n"
+  # puts year
+  # print "#{jan}  #{feb}  #{mar}\n"
+  # print "#{days}  #{days}  #{days}\n"
+
+  # print "#{apr}  #{may}  #{jun}\n"
+  # print "#{days}  #{days}  #{days}\n"
+
+  # print "#{jul}  #{aug}  #{sep}\n"
+  # print "#{days}  #{days}  #{days}\n"
+
+  # print "#{oct}  #{nov}  #{dec}\n"
+  # print "#{days}  #{days}  #{days}\n"
 end
-
-
-
-
-# puts "------------------@month ----------#{@month}"
-# puts "------------------@year -----------#{@year}"
-# puts "------------------@monthRange ------------#{@monthRange}"
-# puts "------------------leapyear -------------#{leapyear}"
-# puts "------------------@weekday --------------#{@weekday}"
-# puts "-------------------index-------------------#{index}"
+  # puts "------------------@month ----------#{@month}"
+  # puts "------------------@year -----------#{@year}"
+  # puts "------------------@monthRange ------------#{@monthRange}"
+  # puts "------------------leapyear -------------#{leapyear}"
+  # puts "------------------@weekday --------------#{@weekday}"
+  # puts "-------------------index-------------------#{index}"

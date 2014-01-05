@@ -154,7 +154,6 @@ elsif @year && !@month
   end
 
   puts year
-
   monthRowsCounter = 0
   4.times do                                          #because there are 4 sets of 3 months
     print "#{monthNamesToPrint[monthRowsCounter]}\n"
@@ -163,7 +162,9 @@ elsif @year && !@month
       i = 0
       arrayToPrint = @arrayOfMonthArrays[i]
       counter = 1
+
       3.times do                                      #there are 3 months printed per row
+
         7.times do                                    #there are 7 days in a week
           if arrayToPrint[0].to_i < 10                #spaces needed when single digits, not when double
             print " #{arrayToPrint[0]} "
@@ -172,17 +173,21 @@ elsif @year && !@month
           end
           arrayToPrint.shift
           counter += 1
-        end
+        end                                           #end 7.times
+
         print " " if counter == 8 || counter == 15    #spaces between months
         print "\n" if counter == 22                   #newline after 3 months' days are printed on a row
         i += 1
         arrayToPrint = @arrayOfMonthArrays[i]
-      end
-    end
+      end                                             #end 3.times
+
+    end                                               #end 6.times
+    print " \n"
     3.times do
       @arrayOfMonthArrays.shift                       #delets the first 3 months once they've been output.
     end
+
     monthRowsCounter += 1
-  end
+  end                                                 #end 4.times
 
 end

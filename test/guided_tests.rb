@@ -4,3 +4,4 @@ $LOAD_PATH << "lib"
 require 'test_day'
 require 'test_year'
 require 'test_cal'
+require 'test_month'

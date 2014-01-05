@@ -1,5 +1,6 @@
 require_relative "day"
 require_relative "year"
+require_relative "month"
 
 #--------------------------------------------------------------
 #
@@ -49,7 +50,6 @@ elsif ARGV.length == 2
 end
 
 
-
 #------------------------------------------------------------
 #
 #          Next convert the @month value to string
@@ -58,74 +58,19 @@ end
 #
 #------------------------------------------------------------
 leapyear = Year.new.leap(@year)
-
-if @month == "1" || @month == "01"
-  @month = "January"
-  @monthRange = 1..31
-elsif @month == "2" || @month == "02"
-  @month = "February"
-  if leapyear
-    @monthRange = 1..29
-  else
-    @monthRange = 1..28
-  end
-elsif @month == "3" || @month == "03"
-  @month = "March"
-  @monthRange = 1..31
-elsif @month == "4" || @month == "04"
-  @month = "April"
-  @monthRange = 1..30
-elsif @month == "5" || @month == "05"
-  @month = "May"
-  @monthRange = 1..31
-elsif @month == "6" || @month == "06"
-  @month = "June"
-  @monthRange = 1..30
-elsif @month == "7" || @month == "07"
-  @month = "July"
-  @monthRange = 1..31
-elsif @month == "8" || @month == "08"
-  @month = "August"
-  @monthRange = 1..31
-elsif @month == "9" || @month == "09"
-  @month = "September"
-  @monthRange = 1..30
-elsif @month == "10"
-  @month = "October"
-  @monthRange = 1..31
-elsif @month == "11"
-  @month = "November"
-  @monthRange = 1..30
-elsif @month == "12"
-  @month = "December"
-  @monthRange = 1..31
-end
+@monthRange = Month.new.range(@month, leapyear)
 
 #------------------------------------------------------------
 #
-#    Make an array of length 42 with spaces before depending
+#    Makes an array of length 42 with spaces before depending
 #    on @weekday and spaces after so that all months fill 6
 #    rows of 7 spaces (=42) for printing.
 #
 #------------------------------------------------------------
 
 @monthDays = *@monthRange
-index = 0
-if @weekday == "Sunday"
-  index = 0
-elsif @weekday == "Monday"
-  index = 1
-elsif @weekday == "Tuesday"
-  index = 2
-elsif @weekday == "Wednesday"
-  index = 3
-elsif @weekday == "Thursday"
-  index = 4
-elsif @weekday == "Friday"
-  index = 5
-elsif @weekday == "Saturday"
-  index = 6
-end
+index = Month.new.index(@weekday)
+
 
 #---------adds spaces before dates
 index.times do
@@ -138,13 +83,53 @@ extraspaces.times do
   @monthDays.push(" ")
 end
 
+
+
+
+puts "------------------@month ----------#{@month}"
+puts "------------------@year -----------#{@year}"
+puts "------------------@monthRange ------------#{@monthRange}"
+puts "------------------leapyear -------------#{leapyear}"
+puts "------------------@weekday --------------#{@weekday}"
+puts "-------------------index-------------------#{index}"
+#----------------------------------------------------------
+#           variables used in printing calendar:
+#----------------------------------------------------------
+days = "Su Mo Tu We Th Fr Sa"
+year = "#{@year}"
+year = year.center(64)
+puts year
+jan = "January"
+jan = jan.center(20)
+feb = "February"
+feb = feb.center(20)
+mar = "March"
+mar = mar.center(20)
+apr = "April"
+apr = apr.center(20)
+may = "May"
+may = may.center(20)
+jun = "June"
+jun = jun.center(20)
+jul = "July"
+jul = jul.center(20)
+aug = "August"
+aug = aug.center(20)
+sep = "September"
+sep = sep.center(20)
+oct = "October"
+oct = oct.center(20)
+nov = "November"
+nov = nov.center(20)
+dec = "December"
+dec = dec.center(20)
+
 #------------------------------------------------------------
 #
 #    If we have both month and year print only one month
-#    from our array of length 42 into 6 rows of 7.
+#    from our array of length 42 into 6 rows of 7:
 #
 #------------------------------------------------------------
-days = "Su Mo Tu We Th Fr Sa"
 
 if @month && @year
   # print @weekday
@@ -176,7 +161,6 @@ if @month && @year
   end
 
 
-
 #------------------------------------------------------------
 #
 #    If we have only year print whole year, starting with
@@ -185,10 +169,17 @@ if @month && @year
 #
 #------------------------------------------------------------
 else
-  year = "#{@year}"
-  year = year.center(64)
-  print year
+  print "#{jan}  #{feb}  #{mar}\n"
+  print "#{days}  #{days}  #{days}\n"
 
+  print "#{apr}  #{may}  #{jun}\n"
+  print "#{days}  #{days}  #{days}\n"
+
+  print "#{jul}  #{aug}  #{sep}\n"
+  print "#{days}  #{days}  #{days}\n"
+
+  print "#{oct}  #{nov}  #{dec}\n"
+  print "#{days}  #{days}  #{days}\n"
 end
 
 

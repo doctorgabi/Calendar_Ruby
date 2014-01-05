@@ -37,31 +37,29 @@ class Month
   end
 
   def stringMonth(month) #converts a number to a month string
-    @month = month
-
-    if @month == "1" || @month == "01"
+    if month == "1" || month == "01"
       @month = "January"
-    elsif @month == "2" || @month == "02"
+    elsif month == "2" || month == "02"
       @month = "February"
-    elsif @month == "3" || @month == "03"
+    elsif month == "3" || month == "03"
       @month = "March"
-    elsif @month == "4" || @month == "04"
+    elsif month == "4" || month == "04"
       @month = "April"
-    elsif @month == "5" || @month == "05"
+    elsif month == "5" || month == "05"
       @month = "May"
-    elsif @month == "6" || @month == "06"
+    elsif month == "6" || month == "06"
       @month = "June"
-    elsif @month == "7" || @month == "07"
+    elsif month == "7" || month == "07"
       @month = "July"
-    elsif @month == "8" || @month == "08"
+    elsif month == "8" || month == "08"
       @month = "August"
-    elsif @month == "9" || @month == "09"
+    elsif month == "9" || month == "09"
       @month = "September"
-    elsif @month == "10"
+    elsif month == "10"
       @month = "October"
-    elsif @month == "11"
+    elsif month == "11"
       @month = "November"
-    elsif @month == "12"
+    elsif month == "12"
       @month = "December"
     end
     @month

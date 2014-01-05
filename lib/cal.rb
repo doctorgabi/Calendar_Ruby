@@ -14,20 +14,7 @@ require_relative "month"
 if ARGV.length > 2                                 #error 1 too many arguments
   print "Please enter only a month and/or a year."
 
-elsif ARGV[0] == nil                               #error 2 no arguments
-  print "Please enter a month and/or a year."
-
-elsif ARGV.length == 1
-
-  if ARGV[0].length != 4                           #error 3 year not 4 digits
-    print "Please enter a four digit year."
-  else
-    @year = ARGV[0]
-    @weekday = Day.new.zeller(1, @year)
-     end
-
 elsif ARGV.length == 2
-
   if ARGV[0].to_i > 12                            #error 4 month more than 2 digits
     print "Please enter a valid month."
   else
@@ -41,6 +28,18 @@ elsif ARGV.length == 2
     end
   end
 
+elsif ARGV.length == 1
+  if ARGV[0].length != 4                           #error 3 year not 4 digits
+    print "Please enter a four digit year."
+  else
+    @year = ARGV[0]
+    @weekday = Day.new.zeller(1, @year)
+  end
+
+elsif ARGV.length == 0
+  @month = Time.now.month
+  @year = Time.now.year
+  @weekday = Day.new.zeller(@month, @year)
 end
 
 #------------------------------------------------------------
@@ -100,9 +99,9 @@ if @month && @year
   index = Month.new.index(@weekday)                #returns 0-6 for unshifting spaces to the array
   monthArray = Month.new.monthArray(index, @monthDays)   #returns array of month numbers with spaces before and after for printing
   @monthDays = monthArray[0]
-  @month = Month.new.stringMonth(@month)          #returns the string version of the numeric month
-
-  @date = "#{@month} #{@year}"
+  @month = @month.to_s
+  month = Month.new.stringMonth(@month)          #returns the string version of the numeric month
+  @date = "#{month} #{@year}"
   @date = @date.center(20)
   print "#{@date}\n#{days}\n"
 
@@ -132,7 +131,7 @@ if @month && @year
 #    If we have only year print whole year
 #
 #------------------------------------------------------------
-else
+elsif @year && !@month
 
   index = Month.new.index(@weekday)                   #NB @weekday is already set to Jan 1st when only year was provided
 

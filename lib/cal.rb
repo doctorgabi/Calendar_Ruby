@@ -11,6 +11,7 @@ require_relative "month"
 #
 #--------------------------------------------------------------
 
+
 if ARGV.length > 2                                 #error 1 too many arguments
   print "Please enter only a month and/or a year."
 
@@ -37,7 +38,7 @@ elsif ARGV.length == 1
   end
 
 elsif ARGV.length == 0
-  @month = Time.now.month
+  @month = Time.now.month.to_s
   @year = Time.now.year
   @weekday = Day.new.zeller(@month, @year)
 end
@@ -104,7 +105,7 @@ if @month && @year
   @date = "#{month} #{@year}"
   @date = @date.center(20)
   print "#{@date}\n#{days}\n"
-
+  # print "@monthDays[0] is currently:  #{@monthDays}"
   6.times do                                      #for 6 rows/weeks
                                                   #(print the first value in the array then delete it)
     6.times do                                    #for the first 6 days of a week
@@ -182,9 +183,9 @@ elsif @year && !@month
       end                                             #end 3.times
 
     end                                               #end 6.times
-    print " \n"
+    print " \n"                                       #puts a space below each 3 months
     3.times do
-      @arrayOfMonthArrays.shift                       #delets the first 3 months once they've been output.
+      @arrayOfMonthArrays.shift                       #deletes the first 3 months once they've been output.
     end
 
     monthRowsCounter += 1

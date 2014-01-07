@@ -1,8 +1,6 @@
 require "minitest/autorun"
 require "cal"
 
-# require_relative 'helper'
-
 class TestCalendar < MiniTest::Unit::TestCase
 #-------------first two tests were only valid during setup - to make sure initial output was as expected.---------#
   # def test_01_month_day_year_output_properly

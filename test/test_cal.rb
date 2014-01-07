@@ -14,11 +14,11 @@ class TestCalendar < MiniTest::Unit::TestCase
   # end
 #-----------------------------------------------------------------------------------------------------------------#
   def test_03_year_only_not_with_four_digits_fails
-    assert_equal(`ruby lib/cal.rb 20123`, "Please enter a four digit year.")
+    assert_equal(`ruby lib/cal.rb 20123`, "cal: year `20123' not in range 1800..3000")
   end
 
   def test_04_month_more_than_12_fails
-    assert_equal(`ruby lib/cal.rb 13 1999`, "Please enter a valid month.")
+    assert_equal(`ruby lib/cal.rb 13 1999`, "cal: 13 is neither a month number (1..12) nor a name")
   end
 
   def test_05_more_than_two_arguments_fails

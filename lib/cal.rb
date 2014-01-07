@@ -106,7 +106,7 @@ if @month && @year
   @date = "#{month} #{@year}"
   @date = @date.center(20)
   print "#{@date}\n#{days}\n"
-  # print "@monthDays[0] is currently:  #{@monthDays}"
+
   6.times do                                      #for 6 rows/weeks
                                                   #(print the first value in the array then delete it)
     6.times do                                    #for the first 6 days of a week

@@ -18,7 +18,7 @@ if ARGV.length > 2                                 #error 1 too many arguments
 
 elsif ARGV.length == 2
   if ARGV[0].to_i > 12                            #error 4 month more than 2 digits
-    print "Please enter a valid month."
+    print "cal: #{ARGV[0]} is neither a month number (1..12) nor a name"
   else
     @month = ARGV[0]
 

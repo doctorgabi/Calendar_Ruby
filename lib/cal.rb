@@ -32,7 +32,7 @@ elsif ARGV.length == 2
 
 elsif ARGV.length == 1
   if ARGV[0].length != 4                           #error 3 year not 4 digits
-    print "Please enter a four digit year."
+    print "cal: year `#{ARGV[0]}' not in range 1800..3000"
   else
     @year = ARGV[0]
     @weekday = Day.new.zeller(1, @year)

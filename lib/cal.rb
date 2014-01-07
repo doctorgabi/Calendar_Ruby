@@ -13,6 +13,7 @@ require_relative "month"
 
 
 if ARGV.length > 2                                 #error 1 too many arguments
+
   print "Please enter only a month and/or a year."
 
 elsif ARGV.length == 2
@@ -21,8 +22,8 @@ elsif ARGV.length == 2
   else
     @month = ARGV[0]
 
-    if ARGV[1].length != 4                        #error 5 year not 4 digits
-      print "Please enter a four digit year."
+    if ARGV[1].to_i < 1800 || ARGV[1].to_i > 3000                        #error 5 year not 4 digits
+      print "cal: year `#{ARGV[1]}' not in range 1800..3000"
     else
       @year = ARGV[1]
       @weekday = Day.new.zeller(@month, @year)

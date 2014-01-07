@@ -13,7 +13,7 @@ require_relative "month"
 
 
 if ARGV.length > 2                                 #error 1 too many arguments
-
+  # raise ArgumentError.new("Please enter only a month and/or a year.")
   print "Please enter only a month and/or a year."
 
 elsif ARGV.length == 2

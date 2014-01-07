@@ -31,9 +31,9 @@ class TestCalendar < MiniTest::Unit::TestCase
     assert_equal(`cal`,`ruby cal.rb`)
   end
 
-  -----------------------------------------------------------------------------------------
-             Integration tests: All appear to output perfectly yet fail.
-  -----------------------------------------------------------------------------------------
+  # -----------------------------------------------------------------------------------------
+  #            Integration tests: All appear to output perfectly yet fail.
+  # -----------------------------------------------------------------------------------------
 
   def test_08_cal_integration_month_with_1st_on_Sunday_works
     assert_equal(`cal 01 2012`, `ruby cal.rb 01 2012`)

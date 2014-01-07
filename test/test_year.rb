@@ -7,7 +7,7 @@ class YearTest < MiniTest::Unit::TestCase
     year = Year.new.leap
   end
 
-  def test_02_leap_year_2000
+  def test_02_non_leap_year_1900
     leapyear = Year.new.leap(1900)
     assert_equal(false, leapyear)
   end

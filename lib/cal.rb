@@ -158,7 +158,7 @@ elsif @year && !@month
   puts year
   monthRowsCounter = 0
   4.times do                                          #because there are 4 sets of 3 months
-    print "#{monthNamesToPrint[monthRowsCounter]}\n"
+    print "#{monthNamesToPrint[0]}\n"                 #there are 4 strings of three month names in this array that gets shifted
     print "#{days}  #{days}  #{days}\n"
     6.times do                                        #there are up to 6 rows/weeks per month
       i = 0
@@ -189,7 +189,7 @@ elsif @year && !@month
       @arrayOfMonthArrays.shift                       #deletes the first 3 months once they've been output.
     end
 
-    monthRowsCounter += 1
+    monthRowsCounter.shift
   end                                                 #end 4.times
 
 end

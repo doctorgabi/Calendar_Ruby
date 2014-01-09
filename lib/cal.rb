@@ -79,6 +79,14 @@ monthNamesToPrint.push("#{jan}  #{feb}  #{mar}",
 #    If we have both month and year print only one month
 #
 #------------------------------------------------------------
+def print_a_day(arrayToPrint)
+  if arrayToPrint[0].to_i < 10                #spaces needed when single digits, not when double
+    print " #{arrayToPrint[0]} "
+  else
+    print "#{arrayToPrint[0]} "
+  end
+  arrayToPrint.shift
+end
 
 if @month && @year
 

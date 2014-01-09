@@ -11,8 +11,8 @@ class Day
       if y > 3000 || y < 1800
         "Year outside of range 1800 - 3000"
       else
-        y -= 1 if m == 1 || m == 2
-        m += 12 if m == 1 || m == 2
+        y -= 1 if m <= 2
+        m += 12 if m <= 2
 
         zellers_day_value = ((1 + (  ( (m+1)*26 )/10  ) + y + (y/4) + (6*(y/100)) + (y/400)) % 7)
 

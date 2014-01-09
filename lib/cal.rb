@@ -56,37 +56,23 @@ year = "#{@year}"
 year = year.center(60)
 
 monthNamesToPrint = []
-jan = "January"
-jan = jan.center(20)
-feb = "February"
-feb = feb.center(20)
-mar = "March"
-mar = mar.center(20)
-monthNamesToPrint.push("#{jan}  #{feb}  #{mar}")
+jan = ("January").center(20)
+feb = ("February").center(20)
+mar = ("March").center(20)
+apr = ("April").center(20)
+may = ("May").center(20)
+jun = ("June").center(20)
+jul = ("July").center(20)
+aug = ("August").center(20)
+sep = ("September").center(20)
+oct = ("October").center(20)
+nov = ("November").center(20)
+dec = ("December").center(20)
 
-apr = "April"
-apr = apr.center(20)
-may = "May"
-may = may.center(20)
-jun = "June"
-jun = jun.center(20)
-monthNamesToPrint.push("#{apr}  #{may}  #{jun}")
-
-jul = "July"
-jul = jul.center(20)
-aug = "August"
-aug = aug.center(20)
-sep = "September"
-sep = sep.center(20)
-monthNamesToPrint.push("#{jul}  #{aug}  #{sep}")
-
-oct = "October"
-oct = oct.center(20)
-nov = "November"
-nov = nov.center(20)
-dec = "December"
-dec = dec.center(20)
-monthNamesToPrint.push("#{oct}  #{nov}  #{dec}")
+monthNamesToPrint.push("#{jan}  #{feb}  #{mar}",
+                      "#{apr}  #{may}  #{jun}",
+                      "#{jul}  #{aug}  #{sep}",
+                      "#{oct}  #{nov}  #{dec}")
 
 #------------------------------------------------------------
 #

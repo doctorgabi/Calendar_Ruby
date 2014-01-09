@@ -158,25 +158,16 @@ elsif @year && !@month
       i = 0
       arrayToPrint = @arrayOfMonthArrays[i]
       counter = 1
-
       3.times do                                      #there are 3 months printed per row
-
         7.times do                                    #there are 7 days in a week
-          if arrayToPrint[0].to_i < 10                #spaces needed when single digits, not when double
-            print " #{arrayToPrint[0]} "
-          else
-            print "#{arrayToPrint[0]} "
-          end
-          arrayToPrint.shift
+          print_a_day(arrayToPrint)
           counter += 1
         end                                           #end 7.times
-
         print " " if counter == 8 || counter == 15    #spaces between months
         print "\n" if counter == 22                   #newline after 3 months' days are printed on a row
         i += 1
         arrayToPrint = @arrayOfMonthArrays[i]
       end                                             #end 3.times
-
     end                                               #end 6.times
     print " \n"                                       #puts a space below each 3 months
     3.times do

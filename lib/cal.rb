@@ -88,6 +88,24 @@ def print_a_day(arrayToPrint)
   arrayToPrint.shift
 end
 
+def print_a_week(arrayToPrint)
+  7.times do
+    print_a_day(arrayToPrint)
+    @counter += 1
+  end
+end
+
+def print_a_row_of_three_months(arrayOfMonthArrays)
+  i = 0
+  @counter = 1
+  3.times do
+    print_a_week(arrayOfMonthArrays[i])
+    print " " if @counter == 8 || @counter == 15
+    print "\n" if @counter == 22
+    i += 1
+  end
+end
+
 if @month && @year
 
   @monthRange = Month.new.range(@month, leapyear)  #returns range of days for any month

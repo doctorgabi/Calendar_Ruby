@@ -154,7 +154,7 @@ elsif @year && !@month
 #-------------------------------
 
   counter = 1
-  @arrayOfMonthArrays = []
+  arrayOfMonthArrays = []
   12.times do
     @month = counter.to_s                             #string of month number generated
     @monthRange = Month.new.range(@month, leapyear)   #range created

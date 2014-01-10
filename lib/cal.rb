@@ -34,7 +34,6 @@ if @month && @year
 #-----------------------
 elsif @year && !@month
   index = Month.new.index(@weekday)                   #NB @weekday is already set to Jan 1st when only year was provided
-
   counter = 1
   @arrayOfMonthArrays = []
   12.times do
@@ -48,7 +47,6 @@ elsif @year && !@month
     @arrayOfMonthArrays.push(monthDays)
     counter += 1
   end
-
   puts year + "  "
   4.times do
     print_a_row_of_three_months(monthNamesToPrint)

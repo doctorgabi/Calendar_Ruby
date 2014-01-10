@@ -60,18 +60,18 @@ end
 #    Helper functions
 #------------------------
 
-def print_a_row_of_three_months(monthNamesToPrint)
-  print "#{monthNamesToPrint[0]}\n"
-  print "#{@days}  #{@days}  #{@days}\n"
-  6.times do
-    Month.new.print_a_row_of_three_weeks
-  end
-  print " \n"
-  3.times do
-    @arrayOfMonthArrays.shift
-  end
-  monthNamesToPrint.shift
-end
+# def print_a_row_of_three_months(monthNamesToPrint)
+#   print "#{monthNamesToPrint[0]}\n"
+#   print "#{@days}  #{@days}  #{@days}\n"
+#   6.times do
+#     Month.new.print_a_row_of_three_weeks
+#   end
+#   print " \n"
+#   3.times do
+#     @arrayOfMonthArrays.shift
+#   end
+#   monthNamesToPrint.shift
+# end
 
 def print_a_month_alone(arrayToPrint)
   7.times do

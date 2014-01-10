@@ -2,27 +2,17 @@ require_relative "day"
 require_relative "year"
 require_relative "month"
 
-#--------------------------------------------------------------
-#
-#      First check if month and year or just year were
-#      entered, and that they are in the correct format,
-#      yielding @year(num), @weekday(string) & @month(num)
-#      NB @weekday is always Jan 1st if only year is provided
-#
-#--------------------------------------------------------------
-
-
-if ARGV.length > 2                                 #error 1 too many arguments
+if ARGV.length > 2
   # raise ArgumentError.new("Please enter only a month and/or a year.")
   print "Please enter only a month and/or a year."
 
 elsif ARGV.length == 2
-  if ARGV[0].to_i > 12                            #error 4 month more than 2 digits
+  if ARGV[0].to_i > 12
     print "cal: #{ARGV[0]} is neither a month number (1..12) nor a name"
   else
     @month = ARGV[0]
 
-    if ARGV[1].to_i < 1800 || ARGV[1].to_i > 3000                        #error 5 year not 4 digits
+    if ARGV[1].to_i < 1800 || ARGV[1].to_i > 3000
       print "cal: year `#{ARGV[1]}' not in range 1800..3000"
     else
       @year = ARGV[1]
@@ -31,7 +21,7 @@ elsif ARGV.length == 2
   end
 
 elsif ARGV.length == 1
-  if ARGV[0].length != 4                           #error 3 year not 4 digits
+  if ARGV[0].length != 4
     print "cal: year `#{ARGV[0]}' not in range 1800..3000"
   else
     @year = ARGV[0]
@@ -44,13 +34,11 @@ elsif ARGV.length == 0
   @weekday = Day.new.zeller(@month, @year)
 end
 
-#------------------------------------------------------------
-#
+#------------------------------------
 #    Miscellaneous data for printing:
-#
-#------------------------------------------------------------
+#------------------------------------
 
-leapyear = Year.new.leap(@year)                    #returns true or false
+leapyear = Year.new.leap(@year)
 @days = "Su Mo Tu We Th Fr Sa"
 year = "#{@year}"
 year = year.center(60)

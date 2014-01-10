@@ -56,23 +56,17 @@ year = "#{@year}"
 year = year.center(60)
 
 monthNamesToPrint = []
-jan = ("January").center(20)
-feb = ("February").center(20)
-mar = ("March").center(20)
-apr = ("April").center(20)
-may = ("May").center(20)
-jun = ("June").center(20)
-jul = ("July").center(20)
-aug = ("August").center(20)
-sep = ("September").center(20)
-oct = ("October").center(20)
-nov = ("November").center(20)
-dec = ("December").center(20)
-
-monthNamesToPrint.push("#{jan}  #{feb}  #{mar}",
-                      "#{apr}  #{may}  #{jun}",
-                      "#{jul}  #{aug}  #{sep}",
-                      "#{oct}  #{nov}  #{dec}")
+monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+monthNamesCentered = []
+monthNames.each { |month| monthNamesCentered << month.center(20) }
+4.times do
+  threeMonthNames = ""
+  3.times do
+    threeMonthNames << monthNamesCentered[0]
+    monthNamesCentered.shift
+  end
+  monthNamesToPrint << threeMonthNames
+end
 
 #------------------------
 #    Helper functions

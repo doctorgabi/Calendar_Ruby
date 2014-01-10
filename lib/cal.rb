@@ -93,17 +93,33 @@ def print_a_week(arrayToPrint)
   end
 end
 
-def print_a_row_of_three_months(arrayOfMonthArrays)
+def print_a_row_of_three_weeks
   i = 0
   @counter = 1
   3.times do
-    print_a_week(arrayOfMonthArrays[i])
+    print_a_week(@arrayOfMonthArrays[i])
     print " " if @counter == 8 || @counter == 15
     print "\n" if @counter == 22
     i += 1
   end
 end
 
+def print_a_row_of_three_months(monthNamesToPrint)
+  print "#{monthNamesToPrint[0]}\n"
+  print "#{@days}  #{@days}  #{@days}\n"
+  6.times do
+    print_a_row_of_three_weeks
+  end
+  print " \n"
+  3.times do
+    @arrayOfMonthArrays.shift
+  end
+  monthNamesToPrint.shift
+end
+
+#------------------------
+# print month only
+#------------------------
 if @month && @year
 
   @monthRange = Month.new.range(@month, leapyear)  #returns range of days for any month

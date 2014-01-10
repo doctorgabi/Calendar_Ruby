@@ -120,4 +120,12 @@ class Month
     output
   end
 
+  def print_a_day(arrayToPrint)
+    if arrayToPrint[0].to_i < 10
+      print " #{arrayToPrint[0]} "
+    else
+      print "#{arrayToPrint[0]} "
+    end
+    arrayToPrint.shift
+  end
 end

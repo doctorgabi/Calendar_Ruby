@@ -71,18 +71,10 @@ end
 #------------------------
 #    Helper functions
 #------------------------
-def print_a_day(arrayToPrint)
-  if arrayToPrint[0].to_i < 10
-    print " #{arrayToPrint[0]} "
-  else
-    print "#{arrayToPrint[0]} "
-  end
-  arrayToPrint.shift
-end
 
 def print_a_week(arrayToPrint)
   7.times do
-    print_a_day(arrayToPrint)
+    Month.new.print_a_day(arrayToPrint)
     @counter += 1
   end
 end
@@ -112,10 +104,9 @@ def print_a_row_of_three_months(monthNamesToPrint)
 end
 
 def print_a_month_alone(arrayToPrint)
-  6.times do
-    print_a_day(arrayToPrint)
+  7.times do
+    Month.new.print_a_day(arrayToPrint)
   end
-  print_a_day(arrayToPrint)
   print "\n"
 end
 #------------------------

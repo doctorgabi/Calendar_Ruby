@@ -51,7 +51,7 @@ end
 #------------------------------------------------------------
 
 leapyear = Year.new.leap(@year)                    #returns true or false
-days = "Su Mo Tu We Th Fr Sa"
+@days = "Su Mo Tu We Th Fr Sa"
 year = "#{@year}"
 year = year.center(60)
 

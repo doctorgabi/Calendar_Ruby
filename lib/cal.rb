@@ -163,36 +163,24 @@ elsif @year && !@month
     monthArray = Month.new.monthArray(index, @monthDays)   #array with spaces and the nextfirstday generated
     @monthDays = monthArray[0]                        #month array aquired
     @weekday = monthArray[1]                          #@weekday reset ready for the next month
-    @arrayOfMonthArrays.push(@monthDays)              #12 arrays stored and named
-    counter += 1                                      #counter incremented
+    arrayOfMonthArrays.push(@monthDays)              #12 arrays stored and named
+    counter += 1
   end
 
   puts year + "  "
-  4.times do                                          #because there are 4 sets of 3 months
+  4.times do
     print "#{monthNamesToPrint[0]}\n"
     print "#{days}  #{days}  #{days}\n"
-    6.times do                                        #there are up to 6 rows/weeks per month
-      i = 0
-      arrayToPrint = @arrayOfMonthArrays[i]
-      counter = 1
-      3.times do                                      #there are 3 months printed per row
-        7.times do                                    #there are 7 days in a week
-          print_a_day(arrayToPrint)
-          counter += 1
-        end                                           #end 7.times
-        print " " if counter == 8 || counter == 15    #spaces between months
-        print "\n" if counter == 22                   #newline after 3 months' days are printed on a row
-        i += 1
-        arrayToPrint = @arrayOfMonthArrays[i]
-      end                                             #end 3.times
-    end                                               #end 6.times
+    6.times do
+      print_a_row_of_three_months(arrayOfMonthArrays)
+    end
     print " \n"                                       #puts a space below each 3 months
     3.times do
-      @arrayOfMonthArrays.shift                       #deletes the first 3 months once they've been output.
+      arrayOfMonthArrays.shift                       #deletes the first 3 months once they've been output.
     end
 
     monthNamesToPrint.shift
-  end                                                 #end 4.times
+  end
 
 end
 

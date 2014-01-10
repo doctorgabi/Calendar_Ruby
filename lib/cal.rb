@@ -32,13 +32,13 @@ end
 #------------------------
 if @month && @year
 
-  monthRange = Month.new.range(@month, leapyear)  #returns range of days for any month
-  monthDays = *monthRange                        #expands range to an array
-  index = Month.new.index(@weekday)                #returns 0-6 for unshifting spaces to the array
+  monthRange = Month.new.range(@month, leapyear)
+  monthDays = *monthRange
+  index = Month.new.index(@weekday)                     #returns 0-6 for unshifting spaces to the array
   monthArray = Month.new.monthArray(index, monthDays)   #returns array of month numbers with spaces before and after for printing
   arrayToPrint = monthArray[0]
   @month = @month.to_s
-  month = Month.new.stringMonth(@month)          #returns the string version of the numeric month
+  month = Month.new.stringMonth(@month)
   @date = "#{month} #{@year}"
   @date = @date.center(20)
   print "#{@date}\n#{@days}\n"
@@ -46,9 +46,9 @@ if @month && @year
   6.times do
     Month.new.print_a_month_alone(arrayToPrint)
   end
-#----------------
-#    Whole year
-#----------------
+#-----------------------
+#    Or print whole year
+#-----------------------
 elsif @year && !@month
   index = Month.new.index(@weekday)                   #NB @weekday is already set to Jan 1st when only year was provided
 

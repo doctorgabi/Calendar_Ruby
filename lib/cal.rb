@@ -117,8 +117,15 @@ def print_a_row_of_three_months(monthNamesToPrint)
   monthNamesToPrint.shift
 end
 
+def print_a_month_alone(arrayToPrint)
+  6.times do
+    print_a_day(arrayToPrint)
+  end
+  print_a_day(arrayToPrint)
+  print "\n"
+end
 #------------------------
-# print month only
+# Print month only
 #------------------------
 if @month && @year
 

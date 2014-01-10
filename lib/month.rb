@@ -153,6 +153,22 @@ class Month
     output
   end
 
+  def get_month_names_to_print
+    monthNamesToPrint = []
+    monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    monthNamesCentered = []
+    monthNames.each { |month| monthNamesCentered << month.center(20) }
+    4.times do
+      threeMonthNames = ""
+      3.times do
+        threeMonthNames << monthNamesCentered[0]
+        monthNamesCentered.shift
+      end
+      monthNamesToPrint << threeMonthNames
+    end
+    monthNamesToPrint
+  end
+
   def print_a_day(arrayToPrint)
     if arrayToPrint[0].to_i < 10
       print " #{arrayToPrint[0]} "

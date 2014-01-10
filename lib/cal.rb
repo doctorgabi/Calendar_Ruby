@@ -4,28 +4,11 @@ require_relative "month"
 
 userInput = ARGV
 Month.new.get_month_and_year_data(userInput)
-
-#------------------------------------
-#    Miscellaneous data for printing:
-#------------------------------------
-
 leapyear = Year.new.leap(@year)
 @days = "Su Mo Tu We Th Fr Sa"
 year = "#{@year}"
 year = year.center(60)
-
-monthNamesToPrint = []
-monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-monthNamesCentered = []
-monthNames.each { |month| monthNamesCentered << month.center(20) }
-4.times do
-  threeMonthNames = ""
-  3.times do
-    threeMonthNames << monthNamesCentered[0]
-    monthNamesCentered.shift
-  end
-  monthNamesToPrint << threeMonthNames
-end
+Month.new.get_month_names_to_print
 
 #------------------------
 # Print month only

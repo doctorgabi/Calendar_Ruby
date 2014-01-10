@@ -74,11 +74,9 @@ monthNamesToPrint.push("#{jan}  #{feb}  #{mar}",
                       "#{jul}  #{aug}  #{sep}",
                       "#{oct}  #{nov}  #{dec}")
 
-#------------------------------------------------------------
-#
-#    If we have both month and year print only one month
-#
-#------------------------------------------------------------
+#------------------------
+#    Helper functions
+#------------------------
 def print_a_day(arrayToPrint)
   if arrayToPrint[0].to_i < 10
     print " #{arrayToPrint[0]} "

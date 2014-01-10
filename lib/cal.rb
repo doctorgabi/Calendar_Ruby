@@ -57,29 +57,6 @@ monthNames.each { |month| monthNamesCentered << month.center(20) }
 end
 
 #------------------------
-#    Helper functions
-#------------------------
-
-# def print_a_row_of_three_months(monthNamesToPrint)
-#   print "#{monthNamesToPrint[0]}\n"
-#   print "#{@days}  #{@days}  #{@days}\n"
-#   6.times do
-#     Month.new.print_a_row_of_three_weeks
-#   end
-#   print " \n"
-#   3.times do
-#     @arrayOfMonthArrays.shift
-#   end
-#   monthNamesToPrint.shift
-# end
-
-def print_a_month_alone(arrayToPrint)
-  7.times do
-    Month.new.print_a_day(arrayToPrint)
-  end
-  print "\n"
-end
-#------------------------
 # Print month only
 #------------------------
 if @month && @year
@@ -96,7 +73,7 @@ if @month && @year
   print "#{@date}\n#{@days}\n"
 
   6.times do
-    print_a_month_alone(arrayToPrint)
+    Month.new.print_a_month_alone(arrayToPrint)
   end
 #----------------
 #    Whole year

@@ -159,4 +159,11 @@ class Month
     end
     monthNamesToPrint.shift
   end
+
+  def print_a_month_alone(arrayToPrint)
+    7.times do
+      Month.new.print_a_day(arrayToPrint)
+    end
+    print "\n"
+  end
 end

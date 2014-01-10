@@ -122,11 +122,11 @@ end
 #------------------------
 if @month && @year
 
-  @monthRange = Month.new.range(@month, leapyear)  #returns range of days for any month
-  @monthDays = *@monthRange                        #expands range to an array
+  monthRange = Month.new.range(@month, leapyear)  #returns range of days for any month
+  monthDays = *monthRange                        #expands range to an array
   index = Month.new.index(@weekday)                #returns 0-6 for unshifting spaces to the array
-  monthArray = Month.new.monthArray(index, @monthDays)   #returns array of month numbers with spaces before and after for printing
-  @monthDays = monthArray[0]
+  monthArray = Month.new.monthArray(index, monthDays)   #returns array of month numbers with spaces before and after for printing
+  monthDays = monthArray[0]
   @month = @month.to_s
   month = Month.new.stringMonth(@month)          #returns the string version of the numeric month
   @date = "#{month} #{@year}"

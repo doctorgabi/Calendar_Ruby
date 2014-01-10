@@ -36,35 +36,16 @@ class Month
   def range(*data) #converts a month number and leapyear info to a range of number of days in a given month
     @month = data[0]
     leapyear = data[1]
-
-    if @month == "1" || @month == "01"
+    if ["1","01","3","03","5","05","7","07","8","08","10","12"].include? @month
       @monthRange = 1..31
-    elsif @month == "2" || @month == "02"
+    elsif ["4","04","6","06","9","09","11"].include? @month
+      @monthRange = 1..30
+    elsif ["2", "02"].include? @month
       if leapyear
         @monthRange = 1..29
       else
         @monthRange = 1..28
       end
-    elsif @month == "3" || @month == "03"
-      @monthRange = 1..31
-    elsif @month == "4" || @month == "04"
-      @monthRange = 1..30
-    elsif @month == "5" || @month == "05"
-      @monthRange = 1..31
-    elsif @month == "6" || @month == "06"
-      @monthRange = 1..30
-    elsif @month == "7" || @month == "07"
-      @monthRange = 1..31
-    elsif @month == "8" || @month == "08"
-      @monthRange = 1..31
-    elsif @month == "9" || @month == "09"
-      @monthRange = 1..30
-    elsif @month == "10"
-      @monthRange = 1..31
-    elsif @month == "11"
-      @monthRange = 1..30
-    elsif @month == "12"
-      @monthRange = 1..31
     end
     @monthRange
   end

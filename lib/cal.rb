@@ -136,21 +136,21 @@ if @month && @year
   6.times do                                      #for 6 rows/weeks
                                                   #(print the first value in the array then delete it)
     6.times do                                    #for the first 6 days of a week
-      if @monthDays[0].to_i < 10
-        print " #{@monthDays[0]} "                #if <10 prints with a space either side
+      if monthDays[0].to_i < 10
+        print " #{monthDays[0]} "                #if <10 prints with a space either side
       else
-        print "#{@monthDays[0]} "                 #else prints only with a space to the right
+        print "#{monthDays[0]} "                 #else prints only with a space to the right
       end
-      @monthDays.shift
+      monthDays.shift
     end
 
     1.times do                                    #for the last day of the week need a newline
-      if @monthDays[0].to_i < 10
-        print " #{@monthDays[0]}\n"
+      if monthDays[0].to_i < 10
+        print " #{monthDays[0]}\n"
       else
-        print "#{@monthDays[0]}\n"
+        print "#{monthDays[0]}\n"
       end
-      @monthDays.shift
+      monthDays.shift
     end
 
   end

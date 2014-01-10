@@ -1,4 +1,37 @@
 class Month
+  def get_month_and_year_data(input)
+    if input.length > 2
+      # raise ArgumentError.new("Please enter only a month and/or a year.")
+      print "Please enter only a month and/or a year."
+
+    elsif input.length == 2
+      if input[0].to_i > 12
+        print "cal: #{input[0]} is neither a month number (1..12) nor a name"
+      else
+        @month = input[0]
+
+        if input[1].to_i < 1800 || input[1].to_i > 3000
+          print "cal: year `#{input[1]}' not in range 1800..3000"
+        else
+          @year = input[1]
+          @weekday = Day.new.zeller(@month, @year)
+        end
+      end
+
+    elsif input.length == 1
+      if input[0].length != 4
+        print "cal: year `#{input[0]}' not in range 1800..3000"
+      else
+        @year = input[0]
+        @weekday = Day.new.zeller(1, @year)
+      end
+
+    elsif input.length == 0
+      @month = Time.now.month.to_s
+      @year = Time.now.year
+      @weekday = Day.new.zeller(@month, @year)
+    end
+  end
 
   def range(*data) #converts a month number and leapyear info to a range of number of days in a given month
     @month = data[0]

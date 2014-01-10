@@ -2,37 +2,8 @@ require_relative "day"
 require_relative "year"
 require_relative "month"
 
-if ARGV.length > 2
-  # raise ArgumentError.new("Please enter only a month and/or a year.")
-  print "Please enter only a month and/or a year."
-
-elsif ARGV.length == 2
-  if ARGV[0].to_i > 12
-    print "cal: #{ARGV[0]} is neither a month number (1..12) nor a name"
-  else
-    @month = ARGV[0]
-
-    if ARGV[1].to_i < 1800 || ARGV[1].to_i > 3000
-      print "cal: year `#{ARGV[1]}' not in range 1800..3000"
-    else
-      @year = ARGV[1]
-      @weekday = Day.new.zeller(@month, @year)
-    end
-  end
-
-elsif ARGV.length == 1
-  if ARGV[0].length != 4
-    print "cal: year `#{ARGV[0]}' not in range 1800..3000"
-  else
-    @year = ARGV[0]
-    @weekday = Day.new.zeller(1, @year)
-  end
-
-elsif ARGV.length == 0
-  @month = Time.now.month.to_s
-  @year = Time.now.year
-  @weekday = Day.new.zeller(@month, @year)
-end
+userInput = ARGV
+Month.new.get_month_and_year_data(userInput)
 
 #------------------------------------
 #    Miscellaneous data for printing:

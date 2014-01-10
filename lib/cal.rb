@@ -60,22 +60,11 @@ end
 #    Helper functions
 #------------------------
 
-def print_a_row_of_three_weeks
-  i = 0
-  @counter = 1
-  3.times do
-    Month.new.print_a_week(@arrayOfMonthArrays[i])
-    print " " if @counter == 8 || @counter == 15
-    print "\n" if @counter == 22
-    i += 1
-  end
-end
-
 def print_a_row_of_three_months(monthNamesToPrint)
   print "#{monthNamesToPrint[0]}\n"
   print "#{@days}  #{@days}  #{@days}\n"
   6.times do
-    print_a_row_of_three_weeks
+    Month.new.print_a_row_of_three_weeks
   end
   print " \n"
   3.times do

@@ -133,33 +133,15 @@ if @month && @year
   monthDays = *monthRange                        #expands range to an array
   index = Month.new.index(@weekday)                #returns 0-6 for unshifting spaces to the array
   monthArray = Month.new.monthArray(index, monthDays)   #returns array of month numbers with spaces before and after for printing
-  monthDays = monthArray[0]
+  arrayToPrint = monthArray[0]
   @month = @month.to_s
   month = Month.new.stringMonth(@month)          #returns the string version of the numeric month
   @date = "#{month} #{@year}"
   @date = @date.center(20)
   print "#{@date}\n#{@days}\n"
 
-  6.times do                                      #for 6 rows/weeks
-                                                  #(print the first value in the array then delete it)
-    6.times do                                    #for the first 6 days of a week
-      if monthDays[0].to_i < 10
-        print " #{monthDays[0]} "                #if <10 prints with a space either side
-      else
-        print "#{monthDays[0]} "                 #else prints only with a space to the right
-      end
-      monthDays.shift
-    end
-
-    1.times do                                    #for the last day of the week need a newline
-      if monthDays[0].to_i < 10
-        print " #{monthDays[0]}\n"
-      else
-        print "#{monthDays[0]}\n"
-      end
-      monthDays.shift
-    end
-
+  6.times do
+    print_a_month_alone(arrayToPrint)
   end
 #----------------
 #    Whole year

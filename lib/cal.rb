@@ -131,7 +131,7 @@ if @month && @year
   month = Month.new.stringMonth(@month)          #returns the string version of the numeric month
   @date = "#{month} #{@year}"
   @date = @date.center(20)
-  print "#{@date}\n#{days}\n"
+  print "#{@date}\n#{@days}\n"
 
   6.times do                                      #for 6 rows/weeks
                                                   #(print the first value in the array then delete it)

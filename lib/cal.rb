@@ -154,47 +154,29 @@ if @month && @year
     end
 
   end
-#------------------------------------------------------------
-#
-#    If we have only year print whole year
-#
-#------------------------------------------------------------
+#----------------
+#    Whole year
+#----------------
 elsif @year && !@month
-
   index = Month.new.index(@weekday)                   #NB @weekday is already set to Jan 1st when only year was provided
 
-#-------------------------------
-#    first generate 12 arrays:
-#-------------------------------
-
   counter = 1
-  arrayOfMonthArrays = []
+  @arrayOfMonthArrays = []
   12.times do
-    @month = counter.to_s                             #string of month number generated
-    @monthRange = Month.new.range(@month, leapyear)   #range created
-    @monthDays = *@monthRange                         #array of the range created
-    index = Month.new.index(@weekday)                 #index for unshifting spaces generated
-    monthArray = Month.new.monthArray(index, @monthDays)   #array with spaces and the nextfirstday generated
-    @monthDays = monthArray[0]                        #month array aquired
-    @weekday = monthArray[1]                          #@weekday reset ready for the next month
-    arrayOfMonthArrays.push(@monthDays)              #12 arrays stored and named
+    @month = counter.to_s
+    monthRange = Month.new.range(@month, leapyear)
+    monthDays = *monthRange
+    index = Month.new.index(@weekday)
+    monthArray = Month.new.monthArray(index, monthDays)   #array with spaces and the nextfirstday generated
+    monthDays = monthArray[0]
+    @weekday = monthArray[1]                              #@weekday reset ready for the next month
+    @arrayOfMonthArrays.push(monthDays)
     counter += 1
   end
 
   puts year + "  "
   4.times do
-    print "#{monthNamesToPrint[0]}\n"
-    print "#{days}  #{days}  #{days}\n"
-    6.times do
-      print_a_row_of_three_months(arrayOfMonthArrays)
-    end
-    print " \n"                                       #puts a space below each 3 months
-    3.times do
-      arrayOfMonthArrays.shift                       #deletes the first 3 months once they've been output.
-    end
-
-    monthNamesToPrint.shift
+    print_a_row_of_three_months(monthNamesToPrint)
   end
 
 end
-

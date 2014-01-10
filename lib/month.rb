@@ -128,4 +128,11 @@ class Month
     end
     arrayToPrint.shift
   end
+
+  def print_a_week(arrayToPrint)
+    7.times do
+      Month.new.print_a_day(arrayToPrint)
+      @counter += 1
+    end
+  end
 end

@@ -80,7 +80,7 @@ monthNamesToPrint.push("#{jan}  #{feb}  #{mar}",
 #
 #------------------------------------------------------------
 def print_a_day(arrayToPrint)
-  if arrayToPrint[0].to_i < 10                #spaces needed when single digits, not when double
+  if arrayToPrint[0].to_i < 10
     print " #{arrayToPrint[0]} "
   else
     print "#{arrayToPrint[0]} "

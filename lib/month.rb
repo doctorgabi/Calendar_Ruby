@@ -102,21 +102,13 @@ class Month
       @monthDays.push(" ")
     end
 
-    if extraspaces == 14 || extraspaces == 7
-      nextFirstDay = "Sunday"
-    elsif extraspaces == 13 || extraspaces == 6
-      nextFirstDay = "Monday"
-    elsif extraspaces == 12 || extraspaces == 5
-      nextFirstDay = "Tuesday"
-    elsif extraspaces == 11 || extraspaces == 4
-      nextFirstDay = "Wednesday"
-    elsif extraspaces == 10 || extraspaces == 3
-      nextFirstDay = "Thursday"
-    elsif extraspaces == 9 || extraspaces == 2
-      nextFirstDay = "Friday"
-    elsif extraspaces == 8 || extraspaces == 1
-      nextFirstDay = "Saturday"
-    end
+    nextFirstDay = "Sunday" if extraspaces == 14 || extraspaces == 7
+    nextFirstDay = "Monday" if extraspaces == 13 || extraspaces == 6
+    nextFirstDay = "Tuesday" if extraspaces == 12 || extraspaces == 5
+    nextFirstDay = "Wednesday" if extraspaces == 11 || extraspaces == 4
+    nextFirstDay = "Thursday" if extraspaces == 10 || extraspaces == 3
+    nextFirstDay = "Friday" if extraspaces == 9 || extraspaces == 2
+    nextFirstDay = "Saturday"if extraspaces == 8 || extraspaces == 1
 
     output = [@monthDays, nextFirstDay]
     output

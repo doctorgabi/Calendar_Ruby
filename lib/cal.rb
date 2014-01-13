@@ -6,10 +6,8 @@ userInput = ARGV
 Month.new.get_month_and_year_data(userInput)
 leapyear = Year.new.leap(@year)
 @days = "Su Mo Tu We Th Fr Sa"
-year = "#{@year}"
-year = year.center(60)
+year = ("#{@year}").center(60)
 Month.new.get_month_names_to_print
-
 
 #------------------------
 # Print month only

@@ -184,4 +184,17 @@ class Month
     end
     print "\n"
   end
+
+  def generate_a_month_array_to_print
+    @month = counter.to_s
+    monthRange = Month.new.range(@month, leapyear)
+    monthDays = *monthRange
+    index = Month.new.index(@weekday)
+    monthArray = Month.new.monthArray(index, monthDays)   #array with spaces and the nextfirstday generated
+    monthDays = monthArray[0]
+    @weekday = monthArray[1]                              #@weekday reset ready for the next month
+    @arrayOfMonthArrays.push(monthDays)
+    counter += 1
+  end
+
 end

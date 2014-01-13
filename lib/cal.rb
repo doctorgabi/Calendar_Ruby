@@ -10,6 +10,7 @@ year = "#{@year}"
 year = year.center(60)
 Month.new.get_month_names_to_print
 
+
 #------------------------
 # Print month only
 #------------------------
@@ -37,15 +38,7 @@ elsif @year && !@month
   counter = 1
   @arrayOfMonthArrays = []
   12.times do
-    @month = counter.to_s
-    monthRange = Month.new.range(@month, leapyear)
-    monthDays = *monthRange
-    index = Month.new.index(@weekday)
-    monthArray = Month.new.monthArray(index, monthDays)   #array with spaces and the nextfirstday generated
-    monthDays = monthArray[0]
-    @weekday = monthArray[1]                              #@weekday reset ready for the next month
-    @arrayOfMonthArrays.push(monthDays)
-    counter += 1
+    Month.new.generate_a_month_array_to_print
   end
   puts year + "  "
   4.times do

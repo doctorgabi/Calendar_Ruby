@@ -185,6 +185,18 @@ class Month
     print "\n"
   end
 
+  def generate_data_to_print_a_month
+    monthRange = Month.new.range(@month, leapyear)
+    monthDays = *monthRange
+    index = Month.new.index(@weekday)                     #returns 0-6 for unshifting spaces to the array
+    monthArray = Month.new.monthArray(index, monthDays)   #returns array of month numbers with spaces before and after for printing
+    arrayToPrint = monthArray[0]
+    @month = @month.to_s
+    month = Month.new.stringMonth(@month)
+    @date = "#{month} #{@year}"
+    @date = @date.center(20)
+  end
+
   def generate_a_month_array_to_print
     @month = counter.to_s
     monthRange = Month.new.range(@month, leapyear)

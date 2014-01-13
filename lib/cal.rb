@@ -9,20 +9,12 @@ leapyear = Year.new.leap(@year)
 year = ("#{@year}").center(60)
 Month.new.get_month_names_to_print
 
+
 #------------------------
 # Print month only
 #------------------------
 if @month && @year
-
-  monthRange = Month.new.range(@month, leapyear)
-  monthDays = *monthRange
-  index = Month.new.index(@weekday)                     #returns 0-6 for unshifting spaces to the array
-  monthArray = Month.new.monthArray(index, monthDays)   #returns array of month numbers with spaces before and after for printing
-  arrayToPrint = monthArray[0]
-  @month = @month.to_s
-  month = Month.new.stringMonth(@month)
-  @date = "#{month} #{@year}"
-  @date = @date.center(20)
+  Month.new.generate_data_to_print_a_month
   print "#{@date}\n#{@days}\n"
 
   6.times do

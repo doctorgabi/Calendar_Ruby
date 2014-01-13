@@ -51,40 +51,42 @@ class Month
   end
 
   def stringMonth(month) #converts a number to a month string
-    @month = "January" if month == "1" || month == "01"
-    @month = "February" if month == "2" || month == "02"
-    @month = "March" if month == "3" || month == "03"
-    @month = "April" if month == "4" || month == "04"
-    @month = "May"if month == "5" || month == "05"
-    @month = "June"if month == "6" || month == "06"
-    @month = "July"if month == "7" || month == "07"
-    @month = "August" if month == "8" || month == "08"
-    @month = "September" if month == "9" || month == "09"
-    @month = "October" if month == "10"
-    @month = "November" if month == "11"
-    @month = "December" if month == "12"
+    if month == "1" || month == "01"
+      @month = "January"
+    elsif month == "2" || month == "02"
+      @month = "February"
+    elsif month == "3" || month == "03"
+      @month = "March"
+    elsif month == "4" || month == "04"
+      @month = "April"
+    elsif month == "5" || month == "05"
+      @month = "May"
+    elsif month == "6" || month == "06"
+      @month = "June"
+    elsif month == "7" || month == "07"
+      @month = "July"
+    elsif month == "8" || month == "08"
+      @month = "August"
+    elsif month == "9" || month == "09"
+      @month = "September"
+    elsif month == "10"
+      @month = "October"
+    elsif month == "11"
+      @month = "November"
+    elsif month == "12"
+      @month = "December"
     end
     @month
   end
 
   def index(weekday) #converts a weekday string to a number
-    input = weekday
-    index = 0
-    if input == "Sunday"
-      index = 0
-    elsif input == "Monday"
-      index = 1
-    elsif input == "Tuesday"
-      index = 2
-    elsif input == "Wednesday"
-      index = 3
-    elsif input == "Thursday"
-      index = 4
-    elsif input == "Friday"
-      index = 5
-    elsif input == "Saturday"
-      index = 6
-    end
+    index = 0 if weekday == "Sunday"
+    index = 1 if weekday == "Monday"
+    index = 2 if weekday == "Tuesday"
+    index = 3 if weekday == "Wednesday"
+    index = 4 if weekday == "Thursday"
+    index = 5 if weekday == "Friday"
+    index = 6 if weekday == "Saturday"
     index
   end
 

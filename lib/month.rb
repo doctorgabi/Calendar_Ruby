@@ -1,70 +1,94 @@
 class Month
-  def get_month_and_year_data(input)
-    if input.length > 2
-      # raise ArgumentError.new("Please enter only a month and/or a year.")
-      print "Please enter only a month and/or a year."
+  # def get_month_and_year_data(input)
+  #   if input.length > 2
+  #     print "Please enter only a month and/or a year."
 
-    elsif input.length == 2
-      if input[0].to_i > 12
-        print "cal: #{input[0]} is neither a month number (1..12) nor a name"
-      else
-        @month = input[0]
+  #   elsif input.length == 2
+  #     if input[0].to_i > 12
+  #       print "cal: #{input[0]} is neither a month number (1..12) nor a name"
+  #     else
+  #       @month = input[0]
 
-        if input[1].to_i < 1800 || input[1].to_i > 3000
-          print "cal: year `#{input[1]}' not in range 1800..3000"
-        else
-          @year = input[1]
-          @weekday = Day.new.zeller(@month, @year)
-        end
-      end
+  #       if input[1].to_i < 1800 || input[1].to_i > 3000
+  #         print "cal: year `#{input[1]}' not in range 1800..3000"
+  #       else
+  #         @year = input[1]
+  #         @weekday = Day.new.zeller(@month, @year)
+  #       end
+  #     end
 
-    elsif input.length == 1
-      if input[0].length != 4
-        print "cal: year `#{input[0]}' not in range 1800..3000"
-      else
-        @year = input[0]
-        @weekday = Day.new.zeller(1, @year)
-      end
+  #   elsif input.length == 1
+  #     if input[0].length != 4
+  #       print "cal: year `#{input[0]}' not in range 1800..3000"
+  #     else
+  #       @year = input[0]
+  #       @weekday = Day.new.zeller(1, @year)
+  #     end
 
-    elsif input.length == 0
-      @month = Time.now.month.to_s
-      @year = Time.now.year
-      @weekday = Day.new.zeller(@month, @year)
-    end
-  end
+  #   elsif input.length == 0
+  #     @month = Time.now.month.to_s
+  #     @year = Time.now.year
+  #     @weekday = Day.new.zeller(@month, @year)
+  #   end
+  # end
 
   def range(*data) #converts a month number and leapyear info to a range of number of days in a given month
-    @month = data[0]
+    @month = data[0].to_i
     leapyear = data[1]
-    if ["1","01","3","03","5","05","7","07","8","08","10","12"].include? @month
+    if [1,3,5,7,8,10,12].include? @month
       @monthRange = 1..31
-    elsif ["4","04","6","06","9","09","11"].include? @month
+    elsif [4,6,9,11].include? @month
       @monthRange = 1..30
-    elsif ["2", "02"].include? @month
-      if leapyear
+    else
+      if @month == 2 && leapyear
         @monthRange = 1..29
       else
         @monthRange = 1..28
       end
     end
+    # case @month
+    # when 1 || 3 || 5 || 7 || 8 || 10 || 12
+    #   @monthRange = 1..31
+    # when 4 || 6 || 9 || 11
+    #   @monthRange = 1..30
+    # when 2
+    #   if leapyear
+    #     @monthRange = 1..29
+    #   else
+    #     @monthRange = 1..28
+    #   end
+    # end
     @monthRange
   end
 
   def stringMonth(month) #converts a number to a month string
-    @month = "January" if month == "1" || month == "01"
-    @month = "February" if month == "2" || month == "02"
-    @month = "March" if month == "3" || month == "03"
-    @month = "April" if month == "4" || month == "04"
-    @month = "May"if month == "5" || month == "05"
-    @month = "June"if month == "6" || month == "06"
-    @month = "July"if month == "7" || month == "07"
-    @month = "August" if month == "8" || month == "08"
-    @month = "September" if month == "9" || month == "09"
-    @month = "October" if month == "10"
-    @month = "November" if month == "11"
-    @month = "December" if month == "12"
+    @month = month.to_i
+    case @month
+    when 1
+      "January"
+    when 2
+      "February"
+    when 3
+      "March"
+    when 4
+      "April"
+    when 5
+      "May"
+    when 6
+      "June"
+    when 7
+      "July"
+    when 8
+      "August"
+    when 9
+      "September"
+    when 10
+      "October"
+    when 11
+      "November"
+    when 12
+      "December"
     end
-    @month
   end
 
   def index(weekday) #converts a weekday string to a number
@@ -93,7 +117,7 @@ class Month
     @monthDays = data[1]
 
     index.times do
-    @monthDays.unshift(" ")
+      @monthDays.unshift(" ")
     end
 
     extraspaces = 42 - @monthDays.length
@@ -122,21 +146,21 @@ class Month
     output
   end
 
-  def get_month_names_to_print
-    monthNamesToPrint = []
-    monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    monthNamesCentered = []
-    monthNames.each { |month| monthNamesCentered << month.center(20) }
-    4.times do
-      threeMonthNames = ""
-      3.times do
-        threeMonthNames << monthNamesCentered[0]
-        monthNamesCentered.shift
-      end
-      monthNamesToPrint << threeMonthNames
-    end
-    monthNamesToPrint
-  end
+  # def get_month_names_to_print
+  #   monthNamesToPrint = []
+  #   monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  #   monthNamesCentered = []
+  #   monthNames.each { |month| monthNamesCentered << month.center(20) }
+  #   4.times do
+  #     threeMonthNames = ""
+  #     3.times do
+  #       threeMonthNames << monthNamesCentered[0]
+  #       monthNamesCentered.shift
+  #     end
+  #     monthNamesToPrint << threeMonthNames
+  #   end
+  #   monthNamesToPrint
+  # end
 
   def print_a_day(arrayToPrint)
     if arrayToPrint[0].to_i < 10
@@ -147,41 +171,41 @@ class Month
     arrayToPrint.shift
   end
 
-  def print_a_week(arrayToPrint)
-    7.times do
-      Month.new.print_a_day(arrayToPrint)
-      @counter += 1
-    end
-  end
+  # def print_a_week(arrayToPrint)
+  #   7.times do
+  #     Month.new.print_a_day(arrayToPrint)
+  #     @counter += 1
+  #   end
+  # end
 
-  def print_a_row_of_three_weeks
-    i = 0
-    @counter = 1
-    3.times do
-      Month.new.print_a_week(@arrayOfMonthArrays[i])
-      print " " if @counter == 8 || @counter == 15
-      print "\n" if @counter == 22
-      i += 1
-    end
-  end
+  # def print_a_row_of_three_weeks
+  #   i = 0
+  #   @counter = 1
+  #   3.times do
+  #     Month.new.print_a_week(@arrayOfMonthArrays[i])
+  #     print " " if @counter == 8 || @counter == 15
+  #     print "\n" if @counter == 22
+  #     i += 1
+  #   end
+  # end
 
-  def print_a_row_of_three_months(monthNamesToPrint)
-    print "#{monthNamesToPrint[0]}\n"
-    print "#{@days}  #{@days}  #{@days}\n"
-    6.times do
-      Month.new.print_a_row_of_three_weeks
-    end
-    print " \n"
-    3.times do
-      @arrayOfMonthArrays.shift
-    end
-    monthNamesToPrint.shift
-  end
+  # def print_a_row_of_three_months(monthNamesToPrint)
+  #   print "#{monthNamesToPrint[0]}\n"
+  #   print "#{@days}  #{@days}  #{@days}\n"
+  #   6.times do
+  #     Month.new.print_a_row_of_three_weeks
+  #   end
+  #   print " \n"
+  #   3.times do
+  #     @arrayOfMonthArrays.shift
+  #   end
+  #   monthNamesToPrint.shift
+  # end
 
-  def print_a_month_alone(arrayToPrint)
-    7.times do
-      Month.new.print_a_day(arrayToPrint)
-    end
-    print "\n"
-  end
+  # def print_a_month_alone(arrayToPrint)
+  #   7.times do
+  #     Month.new.print_a_day(arrayToPrint)
+  #   end
+  #   print "\n"
+  # end
 end

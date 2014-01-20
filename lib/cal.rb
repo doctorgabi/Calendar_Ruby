@@ -2,14 +2,100 @@ require_relative "day"
 require_relative "year"
 require_relative "month"
 
-userInput = ARGV
-Month.new.get_month_and_year_data(userInput)
+# userInput = ARGV
+# Month.new.get_month_and_year_data(userInput)
+
+if ARGV.length > 2
+  # raise ArgumentError.new("Please enter only a month and/or a year.")
+  print "Please enter only a month and/or a year."
+
+elsif ARGV.length == 2
+  if ARGV[0].to_i > 12
+    print "cal: #{ARGV[0]} is neither a month number (1..12) nor a name"
+  else
+    @month = ARGV[0]
+
+    if ARGV[1].to_i < 1800 || ARGV[1].to_i > 3000
+      print "cal: year `#{ARGV[1]}' not in range 1800..3000"
+    else
+      @year = ARGV[1]
+      @weekday = Day.new.zeller(@month, @year)
+    end
+  end
+
+elsif ARGV.length == 1
+  if ARGV[0].length != 4
+    print "cal: year `#{ARGV[0]}' not in range 1800..3000"
+  else
+    @year = ARGV[0]
+    @weekday = Day.new.zeller(1, @year)
+  end
+
+elsif ARGV.length == 0
+  @month = Time.now.month.to_s
+  @year = Time.now.year
+  @weekday = Day.new.zeller(@month, @year)
+end
+
 leapyear = Year.new.leap(@year)
 @days = "Su Mo Tu We Th Fr Sa"
 year = "#{@year}"
 year = year.center(60)
-Month.new.get_month_names_to_print
 
+monthNamesToPrint = []
+monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+monthNamesCentered = []
+monthNames.each { |month| monthNamesCentered << month.center(20) }
+4.times do
+  threeMonthNames = ""
+  3.times do
+    threeMonthNames << monthNamesCentered[0]
+    monthNamesCentered.shift
+  end
+  monthNamesToPrint << threeMonthNames
+end
+
+
+def print_a_week(arrayToPrint)
+  7.times do
+    Month.new.print_a_day(arrayToPrint)
+    @counter += 1
+  end
+end
+
+
+def print_a_row_of_three_weeks
+  i = 0
+  @counter = 1
+  3.times do
+    print_a_week(@arrayOfMonthArrays[i])
+    # Month.new.print_a_week(@arrayOfMonthArrays[i])
+    print " " if @counter == 8 || @counter == 15
+    print "\n" if @counter == 22
+    i += 1
+  end
+end
+
+def print_a_row_of_three_months(monthNamesToPrint)
+  print "#{monthNamesToPrint[0]}\n"
+  print "#{@days}  #{@days}  #{@days}\n"
+  6.times do
+    print_a_row_of_three_weeks
+    # Month.new.print_a_row_of_three_weeks
+  end
+  print " \n"
+  3.times do
+    @arrayOfMonthArrays.shift
+  end
+  monthNamesToPrint.shift
+end
+
+def print_a_month_alone(arrayToPrint)
+  7.times do
+    Month.new.print_a_day(arrayToPrint)
+  end
+  print "\n"
+end
 #------------------------
 # Print month only
 #------------------------
@@ -27,7 +113,8 @@ if @month && @year
   print "#{@date}\n#{@days}\n"
 
   6.times do
-    Month.new.print_a_month_alone(arrayToPrint)
+    print_a_month_alone(arrayToPrint)
+    # Month.new.print_a_month_alone(arrayToPrint)
   end
 #-----------------------
 #    Or print whole year

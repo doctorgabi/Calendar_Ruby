@@ -92,21 +92,20 @@ class Month
   end
 
   def index(weekday) #converts a weekday string to a number
-    input = weekday
-    index = 0
-    if input == "Sunday"
+    case weekday
+    when "Sunday"
       index = 0
-    elsif input == "Monday"
+    when "Monday"
       index = 1
-    elsif input == "Tuesday"
+    when "Tuesday"
       index = 2
-    elsif input == "Wednesday"
+    when "Wednesday"
       index = 3
-    elsif input == "Thursday"
+    when "Thursday"
       index = 4
-    elsif input == "Friday"
+    when "Friday"
       index = 5
-    elsif input == "Saturday"
+    when "Saturday"
       index = 6
     end
     index

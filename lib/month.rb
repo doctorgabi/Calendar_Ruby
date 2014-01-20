@@ -46,18 +46,6 @@ class Month
         @monthRange = 1..28
       end
     end
-    # case @month
-    # when 1 || 3 || 5 || 7 || 8 || 10 || 12
-    #   @monthRange = 1..31
-    # when 4 || 6 || 9 || 11
-    #   @monthRange = 1..30
-    # when 2
-    #   if leapyear
-    #     @monthRange = 1..29
-    #   else
-    #     @monthRange = 1..28
-    #   end
-    # end
     @monthRange
   end
 
